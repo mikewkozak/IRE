@@ -14,6 +14,9 @@ TerranTreeManager::~TerranTreeManager()
 }
 
 void TerranTreeManager::buildTree() {
+	// The Graph object
+	Graph techTree;
+
 	printf("buildTree()\n");
 	// Populates the graph.
 	//root
@@ -35,7 +38,7 @@ void TerranTreeManager::buildTree() {
 	BWAPI::UnitType bunker(BWAPI::UnitTypes::Terran_Bunker);
 	BWAPI::UnitType academy(BWAPI::UnitTypes::Terran_Academy);
 	boost::add_edge(barracks, factory, EdgeWeightProperty(1), techTree);
-	boost::add_edge(barracks, factory, EdgeWeightProperty(1), techTree);
+	boost::add_edge(barracks, bunker, EdgeWeightProperty(1), techTree);
 	boost::add_edge(barracks, academy, EdgeWeightProperty(1), techTree);
 
 
@@ -76,7 +79,54 @@ void TerranTreeManager::buildTree() {
 	*/
 }
 
-void TerranTreeManager::strengthenTree(UnitType type) {}
+void TerranTreeManager::strengthenTree(UnitType type) {
+
+	boost::graph_traits<Graph> ::vertex_iterator vertCurrItr, vertPrevItr, vertEndItr;
+
+	boost::property_map<Graph, boost::vertex_property_tag> ::type propMap1;
+	boost::vertex_property_tag kind;
+
+	propMap1 = boost::get(kind, techTree);
+
+	//find the matching node in the tech tree
+	for (
+		boost::tie(vertCurrItr, vertEndItr) = vertices(techTree);
+		vertCurrItr != vertEndItr;
+		vertCurrItr++
+		)
+	{
+		if (propMap1[*vertCurrItr] == "a300") {
+		std::cout << "found it!!\n";
+		//Once you've found it, you need to reverse the directed to walk it to the root
+		Rgraph rgraph(techTree);
+		Rgraph::adjacency_iterator rbegin, rend;
+		for (boost::tie(rbegin, rend) = boost::adjacent_vertices(*vertCurrItr, rgraph); rbegin != rend; ++rbegin)
+		{
+			//traverse up to root and strengthen the nodes and edges along the way
+			std::pair<Edge, bool> ed = boost::edge(*vertCurrItr, *vertEndItr, techTree);
+			int weight = get(EdgeWeightProperty(), techTree, ed.first);
+			int weightToAdd = 1;
+			boost::put(EdgeWeightProperty(), techTree, ed.first, weight + weightToAdd);
+
+			std::cout << *rbegin << std::endl;
+		}
+		std::cout << std::endl;
+		}
+	}
+
+	//do so for all strategy trees
+	//TODO:
+}
+
+void TerranTreeManager::identifyStrategy() {
+	//for all vertices in the tree
+	//evaluate the height associated with the vertex
+	//keep track of the top 5 largest vertices, but ignore any vertex with current_max values (these are the common nodes)
+	//once the list has been populated, identify in which regions the vertices are
+	//for each axis, produce an average scalar value among all top vertices
+	//these values are now the intensity along each strategic axis for the enemy strategy
+	//potential solution: have NOVA produce units in the exact opposite of these intensities
+}
 
 void TerranTreeManager::buildRequest(UnitType type, bool checkUnic) {}
 
