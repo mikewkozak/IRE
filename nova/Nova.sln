@@ -1,0 +1,70 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Nova", "ExampleAIModule\ExampleAIModule.vcxproj", "{18C89983-924F-4B70-85B2-0913F12B4E64}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SCTechTreeManager", "SCTechTreeManager\SCTechTreeManager.vcxproj", "{13589AAF-2F45-4E72-A091-0CB0E533667F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Debug-GUI|Win32 = Debug-GUI|Win32
+		Debug-GUI|x64 = Debug-GUI|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Release-GUI|Win32 = Release-GUI|Win32
+		Release-GUI|x64 = Release-GUI|x64
+		Tournament|Win32 = Tournament|Win32
+		Tournament|x64 = Tournament|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug|Win32.ActiveCfg = Debug|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug|Win32.Build.0 = Debug|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug|x64.ActiveCfg = Debug|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug|x64.Build.0 = Debug|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug-GUI|Win32.ActiveCfg = Debug-GUI|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug-GUI|Win32.Build.0 = Debug-GUI|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug-GUI|x64.ActiveCfg = Debug-GUI|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Debug-GUI|x64.Build.0 = Debug-GUI|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release|Win32.ActiveCfg = Release|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release|Win32.Build.0 = Release|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release|x64.ActiveCfg = Release|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release|x64.Build.0 = Release|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release-GUI|Win32.ActiveCfg = Release-GUI|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release-GUI|Win32.Build.0 = Release-GUI|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release-GUI|x64.ActiveCfg = Release-GUI|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Release-GUI|x64.Build.0 = Release-GUI|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Tournament|Win32.ActiveCfg = Tournament|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Tournament|Win32.Build.0 = Tournament|Win32
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Tournament|x64.ActiveCfg = Tournament|x64
+		{18C89983-924F-4B70-85B2-0913F12B4E64}.Tournament|x64.Build.0 = Tournament|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug|Win32.Build.0 = Debug|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug|x64.ActiveCfg = Debug|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug|x64.Build.0 = Debug|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug-GUI|Win32.ActiveCfg = Debug|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug-GUI|Win32.Build.0 = Debug|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug-GUI|x64.ActiveCfg = Debug|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Debug-GUI|x64.Build.0 = Debug|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release|Win32.ActiveCfg = Release|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release|Win32.Build.0 = Release|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release|x64.ActiveCfg = Release|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release|x64.Build.0 = Release|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release-GUI|Win32.ActiveCfg = Release|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release-GUI|Win32.Build.0 = Release|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release-GUI|x64.ActiveCfg = Release|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Release-GUI|x64.Build.0 = Release|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Tournament|Win32.ActiveCfg = Release|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Tournament|Win32.Build.0 = Release|Win32
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Tournament|x64.ActiveCfg = Release|x64
+		{13589AAF-2F45-4E72-A091-0CB0E533667F}.Tournament|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C588BA3-7506-47EB-9A56-61E282D6F6A5}
+	EndGlobalSection
+EndGlobal

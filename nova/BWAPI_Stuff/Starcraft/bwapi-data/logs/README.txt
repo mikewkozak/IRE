@@ -1,0 +1,1 @@
+Folder for BOTs and BWTA logs

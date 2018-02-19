@@ -1,0 +1,53 @@
+1/21/2018 5:15:21 PM 6680 Logging started
+1/21/2018 5:15:21 PM 6680 Begin Startup
+1/21/2018 5:15:21 PM 6680 Chaosauncher 0.5.4.1 on NT 6.2.9200  at C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Chaoslauncher - MultiInstance.exe
+1/21/2018 5:15:21 PM 6680 Load Settings
+1/21/2018 5:15:21 PM 6680 GamePath: C:\Games\Starcraft\Starcraft\
+1/21/2018 5:15:21 PM 6680 Load Plugins
+1/21/2018 5:15:21 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjector.bwl
+1/21/2018 5:15:22 PM 6680 Plugin loaded BWAPI Injector (1.16.1) RELEASE
+1/21/2018 5:15:22 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjectord.bwl
+1/21/2018 5:15:22 PM 6680 Unloading Plugin BWAPI_ChaosLauncherInjectord
+1/21/2018 5:15:22 PM 6680 Exception at: FindInDirectory BWAPI_ChaosLauncherInjectord.bwl class: Exception msg: Could not load Plugin "C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjectord.bwl"
+Error: The application has failed to start because its side-by-side configuration is incorrect. Please see the application event log or use the command-line sxstrace.exe tool for more detail.
+(14001)
+1/21/2018 5:15:25 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\iccscbn.icc
+1/21/2018 5:15:27 PM 6680 Plugin loaded ICCup
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\APMAlert.bwl
+1/21/2018 5:15:27 PM 6680 Plugin loaded APMAlert (1.16.1)
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\Chaosplugin.bwl
+1/21/2018 5:15:27 PM 6680 Plugin loaded Chaosplugin for 1.16.1
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\icctv.bwl
+1/21/2018 5:15:27 PM 6680 Plugin loaded ICCup TV Streamer
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\icctvp.bwl
+1/21/2018 5:15:27 PM 6680 Plugin loaded ICCup TV Player
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\LatencyChanger.bwl
+1/21/2018 5:15:27 PM 6680 Plugin loaded LatencyChanger for 1.16.1
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\repfix.bwl
+1/21/2018 5:15:27 PM 6680 Plugin loaded RepFix
+1/21/2018 5:15:27 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\RWAPlayer.bwl
+1/21/2018 5:15:28 PM 6680 Plugin loaded RWAPlayer (1.16.1)
+1/21/2018 5:15:28 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\RWARecorder.bwl
+1/21/2018 5:15:28 PM 6680 Plugin loaded RWARecorder (1.16.1)
+1/21/2018 5:15:28 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\Stormplugin.bwl
+1/21/2018 5:15:28 PM 6680 Plugin loaded Stormplugin for 1.16.1
+1/21/2018 5:15:28 PM 6680 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\wmode.bwl
+1/21/2018 5:15:28 PM 6680 Plugin loaded W-MODE 1.02
+1/21/2018 5:15:28 PM 6680 Load Tools
+1/21/2018 5:15:28 PM 6680 Init GUI
+1/21/2018 5:15:29 PM 6680 Get Starcraftversions
+1/21/2018 5:15:29 PM 6680 Init complete
+1/21/2018 5:15:38 PM 6680 Finishing
+1/21/2018 5:15:38 PM 6680 Unloading Plugin BWAPI Injector (1.16.1) RELEASE
+1/21/2018 5:15:38 PM 6680 Unloading Plugin ICCup
+1/21/2018 5:15:38 PM 6680 Unloading Plugin APMAlert (1.16.1)
+1/21/2018 5:15:38 PM 6680 Unloading Plugin Chaosplugin for 1.16.1
+1/21/2018 5:15:38 PM 6680 Unloading Plugin ICCup TV Streamer
+1/21/2018 5:15:38 PM 6680 Unloading Plugin ICCup TV Player
+1/21/2018 5:15:38 PM 6680 Unloading Plugin LatencyChanger for 1.16.1
+1/21/2018 5:15:38 PM 6680 Unloading Plugin RepFix
+1/21/2018 5:15:38 PM 6680 Unloading Plugin RWAPlayer (1.16.1)
+1/21/2018 5:15:38 PM 6680 Unloading Plugin RWARecorder (1.16.1)
+1/21/2018 5:15:38 PM 6680 Unloading Plugin Stormplugin for 1.16.1
+1/21/2018 5:15:38 PM 6680 Unloading Plugin W-MODE 1.02
+1/21/2018 5:15:38 PM 6680 Logging ended

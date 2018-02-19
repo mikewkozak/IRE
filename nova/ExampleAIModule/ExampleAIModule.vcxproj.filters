@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source\Utils">
+      <UniqueIdentifier>{1ec0aff9-e2af-417a-80c4-8c1b0b512ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Micro">
+      <UniqueIdentifier>{3794f71b-830b-486c-847b-a45ba8d99ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Micro\CombatAgents">
+      <UniqueIdentifier>{233f3e43-ec73-4219-a444-d50cbb59b130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GUI">
+      <UniqueIdentifier>{99edebf2-b373-452a-affb-e97319a89782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GUI\Generated Files">
+      <UniqueIdentifier>{6516743b-11b9-41c3-872f-902ebff70867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Search">
+      <UniqueIdentifier>{959f7c81-8bce-49c4-9138-6b9f20dff84f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Search\CombatSimulator">
+      <UniqueIdentifier>{7c6e1ef9-4108-4d2c-9b13-7d384324136c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Search\EvaluationFunction">
+      <UniqueIdentifier>{5ca32635-aa36-47ce-a6cc-b005d05243d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Search\Algorithm">
+      <UniqueIdentifier>{2ae6a093-e08a-436d-bc52-f404813b8caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\FSM System">
+      <UniqueIdentifier>{1cb653b1-0921-48db-884b-1adbd1eed98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\FSM System\Strategies">
+      <UniqueIdentifier>{8f266bf5-38c5-4f14-a487-86173c21619b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Managers">
+      <UniqueIdentifier>{bdebb2b3-881d-459e-ada1-93ecd76f6ee7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Dll.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnhancedUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NovaAIModule.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NovaStdAfx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuildManager.cpp">
+      <Filter>Source\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationManager.cpp">
+      <Filter>Source\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlannerManager.cpp">
+      <Filter>Source\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProductionManager.cpp">
+      <Filter>Source\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StrategyManager.cpp">
+      <Filter>Source\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WorkerManager.cpp">
+      <Filter>Source\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgent.cpp">
+      <Filter>Source\Micro</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SquadAgent.cpp">
+      <Filter>Source\Micro</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SquadManager.cpp">
+      <Filter>Source\Micro</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\DropshipBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\FirebatBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\GhostBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\MarineBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\MedicBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\ScienceVesselBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\SCVBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\TankBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\VultureBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\WraithBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\QtWindow.cpp">
+      <Filter>Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\GeneratedFiles\moc_QSignal.cpp">
+      <Filter>Source\GUI\Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\GeneratedFiles\moc_QtWindow.cpp">
+      <Filter>Source\GUI\Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\AbstractLayer.cpp">
+      <Filter>Source\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\ActionGenerator.cpp">
+      <Filter>Source\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\GameState.cpp">
+      <Filter>Source\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VsProtoss.cpp">
+      <Filter>Source\FSM System\Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VsTerran.cpp">
+      <Filter>Source\FSM System\Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VsZerg.cpp">
+      <Filter>Source\FSM System\Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\GoliathBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\HTMLoutput.cpp">
+      <Filter>Source\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\EvaluationFunctionBasic.cpp">
+      <Filter>Source\Search\EvaluationFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\ABCD.cpp">
+      <Filter>Source\Search\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\MCTSCD.cpp">
+      <Filter>Source\Search\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\CustomItems.cpp">
+      <Filter>Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CombatAgents\BunkerBehaviour.cpp">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WallGenerator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\TargetSorting.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\CombatSimSustained.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\CombatSimLanchester.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\CombatSimDecreased.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\CombatSimulator.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\UnitInfoLearner.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Search\UnitInfoStatic.cpp">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\EnhancedUI.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NovaAIModule.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NovaStdAfx.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BuildManager.h">
+      <Filter>Source\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InformationManager.h">
+      <Filter>Source\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlannerManager.h">
+      <Filter>Source\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProductionManager.h">
+      <Filter>Source\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StrategyManager.h">
+      <Filter>Source\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WorkerManager.h">
+      <Filter>Source\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\Timer.h">
+      <Filter>Source\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgent.h">
+      <Filter>Source\Micro</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SquadAgent.h">
+      <Filter>Source\Micro</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SquadManager.h">
+      <Filter>Source\Micro</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\DropshipBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\FirebatBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\GhostBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\InterfaceBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\MarineBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\MedicBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\ScienceVesselBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\SCVBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\TankBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\VultureBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\WraithBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\AbstractLayer.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\AbstractOrder.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\ActionGenerator.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\GameState.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State.h">
+      <Filter>Source\FSM System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StateMachine.h">
+      <Filter>Source\FSM System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VsProtoss.h">
+      <Filter>Source\FSM System\Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VsTerran.h">
+      <Filter>Source\FSM System\Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VsZerg.h">
+      <Filter>Source\FSM System\Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\GoliathBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\HTMLoutput.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\CombatSimulator.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\EvaluationFunction.h">
+      <Filter>Source\Search\EvaluationFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\EvaluationFunctionBasic.h">
+      <Filter>Source\Search\EvaluationFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\ABCD.h">
+      <Filter>Source\Search\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\MCTSCD.h">
+      <Filter>Source\Search\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI\CustomItems.h">
+      <Filter>Source\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\TargetSorting.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CombatAgents\BunkerBehaviour.h">
+      <Filter>Source\Micro\CombatAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WallGenerator.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\Statistic.h">
+      <Filter>Source\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\CombatSimSustained.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\CombatSimLanchester.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\CombatSimDecreased.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\UnitInfoLearner.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\UnitInfoStatic.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\CombatInfo.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\EvalCombat.h">
+      <Filter>Source\Search\CombatSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\AbstractGroup.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Search\ActionProbabilities.h">
+      <Filter>Source\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Source\GUI\QSignal.h">
+      <Filter>Source\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\GUI\QtWindow.h">
+      <Filter>Source\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\GUI\QtWindow.ui">
+      <Filter>Source\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\GUI\GeneratedFiles\ui_QtWindow.h">
+      <Filter>Source\GUI\Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Nova.rc" />
+  </ItemGroup>
+</Project>

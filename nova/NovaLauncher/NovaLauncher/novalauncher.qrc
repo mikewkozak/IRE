@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="NovaLauncher">
+    <file>Resources/Nova.ico</file>
+  </qresource>
+</RCC>
