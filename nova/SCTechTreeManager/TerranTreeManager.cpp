@@ -16,127 +16,201 @@ TerranTreeManager::~TerranTreeManager()
 void TerranTreeManager::buildTree() {
 	printf("buildTree()\n");
 
-	// The Graph object
-	Graph techTree;
-
 	// Populates the graph.
 	//root
 	printf("buildTree() - creating root\n");
-	VertexDescriptor command_center = boost::add_vertex(techTree);
-	techTree[command_center].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Command_Center);
-	BWAPI::UnitType supply_depot(BWAPI::UnitTypes::Terran_Supply_Depot);
+
+	VertexDescriptor command_center = addNode(BWAPI::UnitTypes::Terran_Command_Center, "Command Center", 1);
+	VertexDescriptor supply_depot = addNode(BWAPI::UnitTypes::Terran_Supply_Depot, "Supply Depot", 1);
+	VertexDescriptor refinery = addNode(BWAPI::UnitTypes::Terran_Refinery, "Refinery", 1);
 
 	//depth1
 	printf("buildTree() - creating depth1\n");
-	VertexDescriptor barracks = boost::add_vertex(techTree);
-	techTree[barracks].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Barracks);
+	VertexDescriptor barracks = addNode(BWAPI::UnitTypes::Terran_Barracks, "Barracks", 1);
 	boost::add_edge(command_center, barracks, 1, techTree);
 
-	VertexDescriptor engineering_bay = boost::add_vertex(techTree);
-	techTree[engineering_bay].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Engineering_Bay);
+	VertexDescriptor engineering_bay = addNode(BWAPI::UnitTypes::Terran_Engineering_Bay, "Engineering Bay", 1);
 	boost::add_edge(command_center, engineering_bay, 1, techTree);
+
+	VertexDescriptor scv = addNode(BWAPI::UnitTypes::Terran_SCV, "SCV", 1);
+	boost::add_edge(command_center, scv, 1, techTree);
 
 	//depth2
 	printf("buildTree() - creating depth2\n");
-	VertexDescriptor factory = boost::add_vertex(techTree);
-	techTree[factory].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Factory);
-	VertexDescriptor bunker = boost::add_vertex(techTree);
-	techTree[bunker].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Bunker);
-	VertexDescriptor academy = boost::add_vertex(techTree);
-	techTree[academy].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Academy);
+	VertexDescriptor factory = addNode(BWAPI::UnitTypes::Terran_Factory, "Factory", 1);
+	VertexDescriptor bunker = addNode(BWAPI::UnitTypes::Terran_Bunker, "Bunker", 1);
+	VertexDescriptor academy = addNode(BWAPI::UnitTypes::Terran_Academy, "Academy", 1);
 	boost::add_edge(barracks, factory, 1, techTree);
 	boost::add_edge(barracks, bunker, 1, techTree);
 	boost::add_edge(barracks, academy, 1, techTree);
 
-
-	VertexDescriptor missile_turret = boost::add_vertex(techTree);
-	techTree[missile_turret].node = BWAPI::UnitType(BWAPI::UnitTypes::Terran_Missile_Turret);
+	VertexDescriptor missile_turret = addNode(BWAPI::UnitTypes::Terran_Missile_Turret, "Missile Turret", 1);
 	boost::add_edge(engineering_bay, missile_turret, 1, techTree);
 
-	//Name the vertices
-	techTree[command_center].name = "Command Center";
+	VertexDescriptor marine = addNode(BWAPI::UnitTypes::Terran_Marine, "Marine", 1);
+	boost::add_edge(barracks, marine, 1, techTree);
 
-	techTree[barracks].name = "Barracks";
-	techTree[engineering_bay].name = "Engineering Bay";
+	//depth3
+	VertexDescriptor comsat_station = addNode(BWAPI::UnitTypes::Terran_Comsat_Station, "Comsat Station", 1);
+	boost::add_edge(academy, comsat_station, 1, techTree);
 
-	techTree[factory].name = "Factory";
-	techTree[bunker].name = "Bunker";
-	techTree[academy].name = "Academy";
-	techTree[missile_turret].name = "Missile Turret";
+	VertexDescriptor starport = addNode(BWAPI::UnitTypes::Terran_Starport, "Starport", 1);
+	VertexDescriptor armory = addNode(BWAPI::UnitTypes::Terran_Armory, "Armory", 1);
+	VertexDescriptor machine_shop = addNode(BWAPI::UnitTypes::Terran_Machine_Shop, "Machine Shop", 1);
+	boost::add_edge(factory, starport, 1, techTree);
+	boost::add_edge(factory, armory, 1, techTree);
+	boost::add_edge(factory, machine_shop, 1, techTree);
+
+	VertexDescriptor vulture = addNode(BWAPI::UnitTypes::Terran_Vulture, "Vulture", 1);
+	boost::add_edge(factory, vulture, 1, techTree);
+
+	VertexDescriptor firebat = addNode(BWAPI::UnitTypes::Terran_Firebat, "Firebat", 1);
+	VertexDescriptor medic = addNode(BWAPI::UnitTypes::Terran_Medic, "Medic", 1);
+	boost::add_edge(academy, firebat, 1, techTree);
+	boost::add_edge(academy, medic, 1, techTree);
+
+	//depth 4
+	VertexDescriptor control_tower = addNode(BWAPI::UnitTypes::Terran_Control_Tower, "Control Tower", 1);
+	VertexDescriptor science_facility = addNode(BWAPI::UnitTypes::Terran_Science_Facility, "Science Facility", 1);
+	boost::add_edge(starport, control_tower, 1, techTree);
+	boost::add_edge(starport, science_facility, 1, techTree);
+
+	VertexDescriptor wraith = addNode(BWAPI::UnitTypes::Terran_Wraith, "Wraith", 1);
+	boost::add_edge(starport, wraith, 1, techTree);
+
+	VertexDescriptor goliath = addNode(BWAPI::UnitTypes::Terran_Goliath, "Goliath", 1);
+	VertexDescriptor valkyrie = addNode(BWAPI::UnitTypes::Terran_Valkyrie, "Valkyrie", 1);
+	boost::add_edge(armory, goliath, 1, techTree);
+	boost::add_edge(armory, valkyrie, 1, techTree);
+
+	VertexDescriptor siege_tank_tank = addNode(BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode, "Siege Tank (Tank)", 1);
+	VertexDescriptor siege_tank_siege = addNode(BWAPI::UnitTypes::Terran_Siege_Tank_Siege_Mode, "Siege Tank (Siege)", 1);
+	boost::add_edge(machine_shop, siege_tank_tank, 1, techTree);
+	boost::add_edge(machine_shop, siege_tank_siege, 1, techTree);
+
+	VertexDescriptor science_vessel = addNode(BWAPI::UnitTypes::Terran_Science_Vessel, "Science Vessel", 1);
+	boost::add_edge(science_facility, science_vessel, 1, techTree);
+
+	VertexDescriptor dropship = addNode(BWAPI::UnitTypes::Terran_Dropship, "Dropship", 1);
+	boost::add_edge(control_tower, dropship, 1, techTree);
+	boost::add_edge(control_tower, valkyrie, 1, techTree);
+
+	//depth 5
+	VertexDescriptor physics_lab = addNode(BWAPI::UnitTypes::Terran_Physics_Lab, "Physics Lab", 1);
+	VertexDescriptor covert_ops = addNode(BWAPI::UnitTypes::Terran_Covert_Ops, "Covert Ops", 1);
+	boost::add_edge(science_facility, physics_lab, 1, techTree);
+	boost::add_edge(science_facility, covert_ops, 1, techTree);
+
+	VertexDescriptor battlecruiser = addNode(BWAPI::UnitTypes::Terran_Battlecruiser, "Battlecruiser", 1);
+	boost::add_edge(physics_lab, battlecruiser, 1, techTree);
+
+	//depth 6
+	VertexDescriptor nuclear_silo = addNode(BWAPI::UnitTypes::Terran_Nuclear_Silo, "Nuclear Silo", 1);
+	boost::add_edge(covert_ops, nuclear_silo, 1, techTree);
+
+	VertexDescriptor ghost = addNode(BWAPI::UnitTypes::Terran_Ghost, "Ghost", 1);
+	boost::add_edge(covert_ops, ghost, 1, techTree);
+
+	//Calculate depth for all nodes
+	dijkstra_shortest_paths(techTree, command_center, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
+
 }
 
-void TerranTreeManager::printTree() {
+VertexDescriptor TerranTreeManager::addNode(BWAPI::UnitType unitType, std::string name, int initialWeight) {
+	VertexDescriptor node = boost::add_vertex(techTree);
+	techTree[node].node = BWAPI::UnitType(unitType);
+	techTree[node].name = name;
+	techTree[node].strength = 1;
+	techTree[node].location.set<StrategySpace::AIR_AA_AXIS>(0);
+	techTree[node].location.set<StrategySpace::GROUND_AG_AXIS>(0);
+	techTree[node].location.set<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>(0);
+	techTree[node].depth = 0;
+
+	return node;
+}
+
+void TerranTreeManager::printTree(std::string filename) {
 	printf("printTree()\n");
 
 	// Access them when displaying edges :
-	printf("Vertices:\n");
-	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(techTree); it.first != it.second; ++it.first) {
-		std::cout << techTree[*it.first].name << std::endl;
-	}
 
 	//Write out the graph to a standard format for visualization
 	boost::dynamic_properties dp;
-	dp.property("id", get(&Vertex::name, techTree));
-	dp.property("weight", get(&Vertex::strength, techTree));
+	dp.property("node_id", get(boost::vertex_index, techTree));
+	dp.property("name", get(&Vertex::name, techTree));
+	dp.property("strength", get(&Vertex::strength, techTree));
 
-	//std::ofstream out("TerranTechTree.dot");
+	std::ofstream out(filename);
 	//write_graphviz(std::cout, techTree);
+	//write_graphviz(out, techTree);
 	write_graphviz_dp(std::cout, techTree, dp);
-	//write_graphviz_dp(out, techTree, dp, std::string("id"));
-
-	//out.close();
+	write_graphviz_dp(out, techTree, dp);
+	//write_graphviz_dp(std::cout, techTree, dp, std::string("name"), std::string("strength"));
+	
+	out.close();
 }
 
 void TerranTreeManager::strengthenTree(UnitType type) {
-	printf("strengthenTree()\n");
-	/*
-	boost::graph_traits<Graph> ::vertex_iterator vertCurrItr, vertPrevItr, vertEndItr;
+	std::cout << "strengthenTree()\n";// -search for match to " << type.getName() << std::endl;
 
-	boost::property_map<Graph, boost::vertex_property_tag> ::type propMap1;
-	boost::vertex_property_tag kind;
+	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(techTree); it.first != it.second; ++it.first) {
+		std::cout << "Examining " << techTree[*it.first].name << std::endl;
+		if (techTree[*it.first].node == type) {
+			std::cout << "Match found!!\n";
+			techTree[*it.first].strength++;
+			//Once you've found it, you need to reverse the directed to walk it to the root
+			Rgraph rgraph(techTree);
+			Rgraph::adjacency_iterator rbegin, rend;
+			boost::tie(rbegin, rend) = boost::adjacent_vertices(*it.first, rgraph);
+			while(rbegin != rend) {
+			//for (boost::tie(rbegin, rend) = boost::adjacent_vertices(*it.first, rgraph); rbegin != rend; ++rbegin) {
+			
+				std::cout << "Strengthening " << techTree[*rbegin].name << std::endl;
+				//traverse up to root and strengthen the nodes along the way
+				techTree[*rbegin].strength++;
+				boost::tie(rbegin, rend) = boost::adjacent_vertices(*rbegin, rgraph);
 
-	propMap1 = boost::get(kind, techTree);
-
-	//find the matching node in the tech tree
-	for (
-		boost::tie(vertCurrItr, vertEndItr) = vertices(techTree);
-		vertCurrItr != vertEndItr;
-		vertCurrItr++
-		)
-	{
-		if (propMap1[*vertCurrItr] == type) {
-		std::cout << "found it!!\n";
-		//Once you've found it, you need to reverse the directed to walk it to the root
-		Rgraph rgraph(techTree);
-		Rgraph::adjacency_iterator rbegin, rend;
-		for (boost::tie(rbegin, rend) = boost::adjacent_vertices(*vertCurrItr, rgraph); rbegin != rend; ++rbegin)
-		{
-			//traverse up to root and strengthen the nodes and edges along the way
-			std::pair<Edge, bool> ed = boost::edge(*vertCurrItr, *vertEndItr, techTree);
-			int weight = get(EdgeWeightProperty(), techTree, ed.first);
-			int weightToAdd = 1;
-			boost::put(EdgeWeightProperty(), techTree, ed.first, weight + weightToAdd);
-
-			std::cout << *rbegin << std::endl;
+				//Strengthen the edges for visualization purposes
+				/*
+				std::pair<Vertex,Vertex> ed = boost::edge(*it.first, *rbegin, techTree);
+				int weight = get(boost::edge_weight, techTree, ed.first);
+				int weightToAdd = 1;
+				boost::put(boost::edge_weight, techTree, ed.first, weight + weightToAdd);
+				*/
+			}
+			std::cout << std::endl;
 		}
-		std::cout << std::endl;
-		}
+		
 	}
-
+	
 	//do so for all strategy trees
 	//TODO:
-	*/
 }
 
 void TerranTreeManager::identifyStrategy() {
 	printf("identifyStrategy()\n");
-	//for all vertices in the tree
-	//evaluate the height associated with the vertex
+
 	//keep track of the top 5 largest vertices, but ignore any vertex with current_max values (these are the common nodes)
+	std::set<Vertex, VertexComparator> vertices;
+
+	//for all vertices in the tree
+	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(techTree); it.first != it.second; ++it.first) {
+		std::cout << "Examining " << techTree[*it.first].name << std::endl;
+		vertices.insert(techTree[*it.first]);
+	}
+
 	//once the list has been populated, identify in which regions the vertices are
-	//for each axis, produce an average scalar value among all top vertices
-	//these values are now the intensity along each strategic axis for the enemy strategy
-	//potential solution: have NOVA produce units in the exact opposite of these intensities
+	std::cout << "Num vertices: " << vertices.size() << std::endl;
+	std::set<Vertex, VertexComparator>::iterator iter;
+	int count = 0;
+	for (iter = vertices.begin(); (iter != vertices.end() && count < 4); iter++) {
+		
+		double airAggressiveness = (*iter).location.get<StrategySpace::AIR_AA_AXIS>();
+		double groundAggressiveness = (*iter).location.get<StrategySpace::GROUND_AG_AXIS>();
+		double overallAggressiveness = (*iter).location.get<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>();
+		std::cout << (*iter).name << "  Strategy A: " << airAggressiveness << "   G: " << groundAggressiveness << "   O: " << overallAggressiveness << std::endl;
+		count++;
+	}
 }
 
 void TerranTreeManager::buildRequest(UnitType type, bool checkUnic) {}

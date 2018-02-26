@@ -15,7 +15,7 @@ public:
 	/*
 	Prints to the DOT file format for visualization in graph files
 	*/
-	void printTree();
+	void printTree(std::string filename);
 
 	/*
 	Given a unit, building, or upgrade, traverse up the tree to the root and strengthen every edge along the way
@@ -39,6 +39,11 @@ public:
 private:
 	// The Graph object
 	Graph techTree;
+
+	/*
+	Support function for adding nodes to the graph
+	*/
+	VertexDescriptor addNode(BWAPI::UnitType unitType, std::string name, int initialWeight);
 
 };
 

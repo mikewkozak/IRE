@@ -11,22 +11,34 @@ StrategySpace::~StrategySpace()
 {
 }
 
-void StrategySpace::layOutStrategy() {
-	//all strategy vertices begin at 0,0,0
-	//based on the intensity of the strategy along the various axes, produce a vector
-	//for all vertices, apply the vector to the positions and multiple the intensity by the depth in the tree and spread out by number of children
-	/*
-	typedef boost::property_map<Graph, boost::vertex_index_t>::type IndexMap;
-	IndexMap index = get(boost::vertex_index, strategySpace);
+void StrategySpace::addStrategy(int race, Strategy strategy) {
+	//rotate node X/Y positions around axes based on these biases
+	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(strategy.techTree); it.first != it.second; ++it.first) {
+		std::cout << "Examining " << strategy.techTree[*it.first].name << std::endl;
+		if (strat.techTree[*it.first].node != NULL) {
+			double xpos = strat.techTree[*it.first].depth * /*cur_child / max_children*/ 100 * strat.air_aa_intensity;
+			strat.techTree[*it.first].location.set<StrategySpace::AIR_AA_AXIS>(xpos);
 
-	std::cout << "vertices(g) = ";
-	typedef boost::graph_traits<Graph>::vertex_iterator vertex_iter;
-	std::pair<vertex_iter, vertex_iter> vp;
-	
-	for (vp = vertices(strategySpace); vp.first != vp.second; ++vp.first) {
-		std::cout << index[*vp.first] << " ";
+			double ypos = strat.techTree[*it.first].depth * 100 * strat.air_aa_intensity;
+			strat.techTree[*it.first].location.set<StrategySpace::GROUND_AG_AXIS>(ypos);
+
+			double zpos = 100 * strat.air_aa_intensity;
+			strat.techTree[*it.first].location.set<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>(zpos);
+
+		}
 	}
 
-	std::cout << std::endl;
-	*/
+	//add strategy to the correct race graph
+	if (race == 0) {
+		//add strat tech tree to terranStrategySpace
+	}
+	else if (race == 1) {
+		//add strat tech tree to protossStrategySpace
+	}
+	else if (race == 2) {
+		//add strat tech tree to zergStrategySpace
+	}
+	else {
+		printf("UNKNOWN RACE. NOT ADDING STRATEGY");
+	}
 }

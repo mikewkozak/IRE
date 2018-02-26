@@ -17,5 +17,10 @@ private:
 
 	//TOY PROBLEM
 	Graph vultureRush;
+
+	/*
+	Support function for adding nodes to the graph
+	*/
+	VertexDescriptor addNode(Graph graph, BWAPI::UnitType unitType, std::string name, int initialWeight);
 };
 
