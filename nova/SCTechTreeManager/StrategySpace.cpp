@@ -11,10 +11,10 @@ StrategySpace::~StrategySpace()
 {
 }
 
-void StrategySpace::addStrategy(int race, Strategy strategy) {
+void StrategySpace::addStrategy(int race, Strategy strat) {
 	//rotate node X/Y positions around axes based on these biases
-	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(strategy.techTree); it.first != it.second; ++it.first) {
-		std::cout << "Examining " << strategy.techTree[*it.first].name << std::endl;
+	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(strat.techTree); it.first != it.second; ++it.first) {
+		std::cout << "Examining " << strat.techTree[*it.first].name << std::endl;
 		if (strat.techTree[*it.first].node != NULL) {
 			double xpos = strat.techTree[*it.first].depth * /*cur_child / max_children*/ 100 * strat.air_aa_intensity;
 			strat.techTree[*it.first].location.set<StrategySpace::AIR_AA_AXIS>(xpos);

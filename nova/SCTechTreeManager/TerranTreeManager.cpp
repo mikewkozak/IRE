@@ -191,19 +191,21 @@ void TerranTreeManager::identifyStrategy() {
 	printf("identifyStrategy()\n");
 
 	//keep track of the top 5 largest vertices, but ignore any vertex with current_max values (these are the common nodes)
-	std::set<Vertex, VertexComparator> vertices;
+	std::list<Vertex> vertices;
 
 	//for all vertices in the tree
 	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(techTree); it.first != it.second; ++it.first) {
 		std::cout << "Examining " << techTree[*it.first].name << std::endl;
-		vertices.insert(techTree[*it.first]);
+		vertices.push_back(techTree[*it.first]);
 	}
+
+	vertices.sort(VertexComparator());
 
 	//once the list has been populated, identify in which regions the vertices are
 	std::cout << "Num vertices: " << vertices.size() << std::endl;
-	std::set<Vertex, VertexComparator>::iterator iter;
+	std::list<Vertex>::iterator iter;
 	int count = 0;
-	for (iter = vertices.begin(); (iter != vertices.end() && count < 4); iter++) {
+	for (iter = vertices.begin(); (iter != vertices.end() && count < 5); iter++) {
 		
 		double airAggressiveness = (*iter).location.get<StrategySpace::AIR_AA_AXIS>();
 		double groundAggressiveness = (*iter).location.get<StrategySpace::GROUND_AG_AXIS>();

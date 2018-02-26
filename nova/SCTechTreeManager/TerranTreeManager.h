@@ -1,3 +1,5 @@
+#include <list>
+
 //Graph structure and strategy axes
 #include "StrategySpace.h"
 

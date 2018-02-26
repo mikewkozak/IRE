@@ -2,7 +2,6 @@
 #include <iostream> // std::cout
 #include <utility> // std::pair
 #include <algorithm>                 // for std::for_each
-#include <set>
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/topological_sort.hpp>
@@ -12,9 +11,6 @@
 
 //Includes for BWAPI types
 #include <BWAPI.h>
-
-//Includes for support classes
-#include "StrategyReader.h"
 
 #include <boost/geometry.hpp>
 namespace bg = boost::geometry;
