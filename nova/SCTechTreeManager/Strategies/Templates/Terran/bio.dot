@@ -1,0 +1,15 @@
+digraph G {
+"Command Center" [depth=0, strength=1];
+"Supply Depot" [depth=2147483647, strength=1];
+Refinery [depth=2147483647, strength=1];
+Barracks [depth=1, strength=1];
+"Engineering Bay" [depth=1, strength=1];
+Academy [depth=2, strength=1];
+Marine [depth=2, strength=1];
+Medic [depth=3, strength=1];
+"Command Center"->Barracks ;
+"Command Center"->"Engineering Bay" ;
+Barracks->Academy ;
+Barracks->Marine ;
+Academy->Medic ;
+}

@@ -1,63 +1,4 @@
-//Includes for Tree representation of tech tree
-#include <iostream> // std::cout
-#include <utility> // std::pair
-#include <algorithm>                 // for std::for_each
-#include <boost/graph/graph_traits.hpp>
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/topological_sort.hpp>
-#include <boost/graph/graphviz.hpp>
-#include <boost/graph/reverse_graph.hpp>
-#include <boost/graph/dijkstra_shortest_paths.hpp>
-
-//Includes for BWAPI types
-#include <BWAPI.h>
-
-#include <boost/geometry.hpp>
-namespace bg = boost::geometry;
-
-
-// create a typedef for the Graph type
-//Vertex container
-struct Vertex {
-	BWAPI::UnitType node;
-	std::string name;
-	int strength;
-	bg::model::point<double, 3, bg::cs::cartesian> location;
-	int depth;
-};
-
-struct VertexComparator {
-	bool operator() (const Vertex& lhs, const Vertex& rhs) const {
-		return lhs.strength > rhs.strength;
-	}
-};
-
-// Graph.
-typedef boost::adjacency_list< boost::vecS,
-	boost::vecS,
-	boost::bidirectionalS,
-	Vertex,
-	int
-> Graph;
-
-//Reverse graph. Necessary to traverse to root
-typedef boost::reverse_graph<Graph> Rgraph;
-
-//Graph descriptors
-typedef Graph::edge_descriptor EdgeDescriptor;
-typedef typename boost::graph_traits<Graph>::vertex_descriptor VertexDescriptor;
-
-//Graph iterators
-typedef boost::graph_traits<Graph>::edge_iterator EdgeIterator;
-typedef boost::graph_traits<Graph>::vertex_iterator VertexIterator;
-
-struct Strategy {
-	Graph techTree;
-	std::string name;
-	double air_aa_intensity;//x -1 to 1
-	double ground_ag_intensity;//y -1 to 1
-	double aggressive_defensive_intensity;//z -1 to 1
-};
+#include "GraphUtils.h"
 
 #pragma once
 class StrategySpace
@@ -82,16 +23,39 @@ public:
 	StrategySpace();
 	~StrategySpace();
 
+	/*
+	Adds a new tree to the strategy space and lays out the nodes based on the intensity of the
+	strategy along each major axis in the space
+	*/
 	void addStrategy(int race, Strategy strat);
+
+	/*
+	Given a unit, building, or upgrade, traverse up the tree to the root and strengthen every edge along the way
+	*/
+	void strengthenTree(int race, BWAPI::UnitType type);
+
+
+	/*
+	Given the current state of the strategy space, ID which strategies are likely being used
+	*/
+	void identifyStrategy(int race);
+
+
+	Vertex findNode(int race, Vertex node);
 
 private:
 	//Graph representing the combined strategies of the Terran Race
-	Graph terranStrategySpace;
+	SCGraph terranStrategySpace;
+	VertexDescriptor terranStrategySpaceRoot;
 
 	//Graph representing the combined strategies of the Protoss Race
-	Graph protossStrategySpace;
+	SCGraph protossStrategySpace;
+	VertexDescriptor protossStrategySpaceRoot;
 
 	//Graph representing the combined strategies of the Zerg Race
-	Graph zergStrategySpace;
+	SCGraph zergStrategySpace;
+	VertexDescriptor zergStrategySpaceRoot;
+
+	SCGraph& getTechTree(int race);
 };
 

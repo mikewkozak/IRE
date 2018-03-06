@@ -1,6 +1,9 @@
+//for getting all strategy files in directory
+#include <boost/filesystem.hpp>
 
 //Graph structure and strategy axes
 #include "StrategySpace.h"
+#include "GraphUtils.h"
 
 #pragma once
 class StrategyReader
@@ -10,17 +13,16 @@ public:
 	~StrategyReader();
 
 	//Read in strategy files and store in strategy map
-	void init();
+	Strategy init();
+
+	void getTerranStrategies();
+
+	void buildStrategies();
 
 private:
-	//Strategy Map
+	static const std::string TERRAN_STRATEGY_PATH;
 
 	//TOY PROBLEM
-	Graph vultureRush;
-
-	/*
-	Support function for adding nodes to the graph
-	*/
-	VertexDescriptor addNode(Graph graph, BWAPI::UnitType unitType, std::string name, int initialWeight);
+	SCGraph vultureRush;
 };
 

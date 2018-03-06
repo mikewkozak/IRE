@@ -33,6 +33,9 @@
     <ClInclude Include="StrategySpace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GraphUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StrategySpace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

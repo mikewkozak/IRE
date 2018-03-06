@@ -1,0 +1,7 @@
+digraph G {
+"Command Center" [depth=0, strength=1];
+"Supply Depot" [depth=2147483647, strength=1];
+Refinery [depth=2147483647, strength=1];
+SCV [depth=1, strength=1];
+"Command Center"->SCV ;
+}
