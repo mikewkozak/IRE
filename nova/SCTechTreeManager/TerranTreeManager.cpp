@@ -6,9 +6,17 @@ using namespace BWAPI;
 TerranTreeManager::TerranTreeManager()
 {
 	printf("TerranTreeManager()\n");
-
+	
 	//TOY PROBLEM
-	strategies.addStrategy(0, reader.init());
+	//std::vector<Strategy> strats = reader.buildTerranStrategies(strategies.getTerranStrategyRoot());
+	std::vector<Strategy> strats = reader.buildTerranStrategies();
+
+	for (unsigned int i = 0; i < strats.size(); i++) {
+		std::cout << "TerranTreeManager() - Adding Strategy: " << strats[i].name << std::endl;
+		strategies.addStrategy(0, strats[i]);
+	}
+
+	strategies.printStrategySpaces();
 }
 
 
@@ -148,15 +156,9 @@ void TerranTreeManager::strengthenTree(UnitType type) {
 				std::cout << "Strengthening " << techTree[*rbegin].name << std::endl;
 				//traverse up to root and strengthen the nodes along the way
 				techTree[*rbegin].strength++;
-				boost::tie(rbegin, rend) = boost::adjacent_vertices(*rbegin, rgraph);
 
-				//Strengthen the edges for visualization purposes
-				/*
-				std::pair<Vertex,Vertex> ed = boost::edge(*it.first, *rbegin, techTree);
-				int weight = get(boost::edge_weight, techTree, ed.first);
-				int weightToAdd = 1;
-				boost::put(boost::edge_weight, techTree, ed.first, weight + weightToAdd);
-				*/
+				//get the next node up in the tree
+				boost::tie(rbegin, rend) = boost::adjacent_vertices(*rbegin, rgraph);
 			}
 			std::cout << std::endl;
 		}

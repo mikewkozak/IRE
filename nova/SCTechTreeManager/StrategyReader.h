@@ -1,5 +1,6 @@
 //for getting all strategy files in directory
 #include <boost/filesystem.hpp>
+#include <vector>
 
 //Graph structure and strategy axes
 #include "StrategySpace.h"
@@ -13,16 +14,13 @@ public:
 	~StrategyReader();
 
 	//Read in strategy files and store in strategy map
-	Strategy init();
+	void init();
 
 	void getTerranStrategies();
 
-	void buildStrategies();
+	std::vector<Strategy> buildTerranStrategies();
 
 private:
 	static const std::string TERRAN_STRATEGY_PATH;
-
-	//TOY PROBLEM
-	SCGraph vultureRush;
 };
 

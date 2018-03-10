@@ -8,6 +8,7 @@
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/reverse_graph.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
+#include <boost/graph/copy.hpp>
 
 //Includes for BWAPI types
 #include <BWAPI.h>
@@ -57,6 +58,7 @@ struct Strategy {
 	double air_aa_intensity;//x -1 to 1
 	double ground_ag_intensity;//y -1 to 1
 	double aggressive_defensive_intensity;//z -1 to 1
+	double maxDepth;
 };
 
 #pragma once
@@ -109,7 +111,9 @@ public:
 		dp.property("node_id", get(&Vertex::name, tree));
 		//dp.property("name", get(&Vertex::name, tree));
 		dp.property("strength", get(&Vertex::strength, tree));
+		dp.property("penwidth", get(&Vertex::strength, tree));
 		dp.property("depth", get(&Vertex::depth, tree));
+		//dp.property("pos", get(&Vertex::location, tree));
 
 		if (printToConsole) {
 			write_graphviz_dp(std::cout, tree, dp);
@@ -122,5 +126,6 @@ public:
 		write_graphviz_dp(out, tree, dp);
 		out.close();
 	}
+
 };
 

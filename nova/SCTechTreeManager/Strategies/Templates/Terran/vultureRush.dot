@@ -1,8 +1,8 @@
 digraph G {
-"Command Center" [depth=0, strength=1];
-Barracks [depth=1, strength=1];
-Factory [depth=2, strength=1];
-Vulture [depth=3, strength=1];
+"Command Center" [depth=0, penwidth=1, strength=1];
+Barracks [depth=1, penwidth=1, strength=1];
+Factory [depth=2, penwidth=1, strength=1];
+Vulture [depth=3, penwidth=1, strength=1];
 "Command Center"->Barracks ;
 Barracks->Factory ;
 Factory->Vulture ;

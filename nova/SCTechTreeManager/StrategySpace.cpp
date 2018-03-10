@@ -15,13 +15,33 @@ StrategySpace::~StrategySpace()
 {
 }
 
+
+VertexDescriptor& StrategySpace::getTerranStrategyRoot() {
+	return terranStrategySpaceRoot;
+}
+
+VertexDescriptor& StrategySpace::getProtossStrategyRoot() {
+	return protossStrategySpaceRoot;
+}
+
+VertexDescriptor& StrategySpace::getZergStrategyRoot() {
+	return zergStrategySpaceRoot;
+}
+
+void StrategySpace::printStrategySpaces() {
+	GraphUtils::printTree(terranStrategySpace, "Strategies/StrategySpace/TerranStrategies.dot", false);
+	GraphUtils::printTree(zergStrategySpace, "Strategies/StrategySpace/ZergStrategies.dot", false);
+	GraphUtils::printTree(protossStrategySpace, "Strategies/StrategySpace/ProtossStrategies.dot", false);
+}
+
 void StrategySpace::addStrategy(int race, Strategy strat) {
 	printf("addStrategy()");
 
-	std::cout << " Adding Strategy " << strat.name << " with intensities: "
-		<< strat.aggressive_defensive_intensity << " "
+	std::cout << " Adding Strategy " << strat.name << " of depth " << strat.maxDepth
+		<< " with intensities: "
 		<< strat.air_aa_intensity << " "
-		<< strat.ground_ag_intensity << std::endl;
+		<< strat.ground_ag_intensity << " "
+		<< strat.aggressive_defensive_intensity << std::endl;
 
 	//add strategy to the correct race graph
 	SCGraph& techTree = getTechTree(race);
@@ -30,11 +50,11 @@ void StrategySpace::addStrategy(int race, Strategy strat) {
 	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(strat.techTree); it.first != it.second; ++it.first) {
 		//std::cout << "Examining " << strat.techTree[*it.first].name << std::endl;
 		if (strat.techTree[*it.first].node != NULL) {
-			//double xpos = strat.techTree[*it.first].depth * /*cur_child / max_children*/ strat.air_aa_intensity;
-			double xpos = strat.techTree[*it.first].depth * /*cur_child / max_children*/ strat.air_aa_intensity;
+			
+			double xpos = (strat.techTree[*it.first].depth / strat.maxDepth) * /*cur_child / max_children*/ strat.air_aa_intensity;
 			strat.techTree[*it.first].location.set<StrategySpace::AIR_AA_AXIS>(xpos);
 
-			double ypos = strat.techTree[*it.first].depth * strat.ground_ag_intensity;
+			double ypos = (strat.techTree[*it.first].depth / strat.maxDepth) * strat.ground_ag_intensity;
 			strat.techTree[*it.first].location.set<StrategySpace::GROUND_AG_AXIS>(ypos);
 
 			double zpos = strat.aggressive_defensive_intensity;
@@ -46,7 +66,18 @@ void StrategySpace::addStrategy(int race, Strategy strat) {
 	}
 
 	//add strat tech tree to terranStrategySpace
-	techTree = strat.techTree;
+	typedef std::map<VertexDescriptor, size_t> IndexMap;
+	IndexMap mapIndex;
+	boost::associative_property_map<IndexMap> propmapIndex(mapIndex);
+	int i = 0;
+	BGL_FORALL_VERTICES(v, strat.techTree, SCGraph)
+	{
+		put(propmapIndex, v, i++);
+	}
+
+	//Add the new strategy to the root tech tree
+	copy_graph(strat.techTree, techTree, vertex_index_map(propmapIndex));
+	//techTree = strat.techTree;
 }
 
 void StrategySpace::strengthenTree(int race, BWAPI::UnitType type) {
@@ -107,8 +138,20 @@ void StrategySpace::identifyStrategy(int race) {
 	//std::cout << "Num vertices: " << vertices.size() << std::endl;
 	std::list<Vertex>::iterator iter;
 	int count = 0;
+
+	double proposedAirAggressiveness = 0;
+	double proposedGroundAggressiveness = 0;
+	double proposedOverallAggressiveness = 0;
 	for (iter = vertices.begin(); (iter != vertices.end() && count < 5); iter++) {
 		Vertex strategyNode = findNode(0, (*iter));
+
+		//We want to ignore all the "common" nodes
+		if ((strategyNode.node == BWAPI::UnitTypes::Terran_Command_Center) ||
+			(strategyNode.node == BWAPI::UnitTypes::Protoss_Nexus) ||
+			(strategyNode.node == BWAPI::UnitTypes::Zerg_Hatchery) ) {
+			count++;
+			continue;
+		}
 
 		if (strategyNode.name == "") {
 			std::cout << "No Node Match for " << (*iter).name << std::endl;
@@ -117,23 +160,30 @@ void StrategySpace::identifyStrategy(int race) {
 			double airAggressiveness = strategyNode.location.get<StrategySpace::AIR_AA_AXIS>();
 			double groundAggressiveness = strategyNode.location.get<StrategySpace::GROUND_AG_AXIS>();
 			double overallAggressiveness = strategyNode.location.get<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>();
-			std::cout << strategyNode.name << "  Strategy A: " << airAggressiveness << "   G: " << groundAggressiveness << "   O: " << overallAggressiveness << std::endl;
 
-			std::cout << "Proposed Counter Strategy:\n"
-				<< "    Anti-Air Aggressiveness: " << airAggressiveness << std::endl
-				<< "    Air Aggressiveness: " << (airAggressiveness * -1) << std::endl
-				<< "    Anti-Ground Aggressiveness: " << groundAggressiveness << std::endl
-				<< "    Ground Aggressiveness: " << (groundAggressiveness * -1) << std::endl
-				<< "    Defense Aggressiveness: " << overallAggressiveness << std::endl
-				<< "    Defense Aggressiveness: " << (overallAggressiveness * -1) << std::endl;
+			proposedAirAggressiveness += airAggressiveness;
+			proposedGroundAggressiveness += groundAggressiveness;
+			proposedOverallAggressiveness += overallAggressiveness;
+
+			std::cout << strategyNode.name << "  POS A: " << airAggressiveness << "   G: " << groundAggressiveness << "   O: " << overallAggressiveness << std::endl;
 		}
 		count++;
 	}
+
+	//Take the average intensity of all node points
+	proposedAirAggressiveness /= 5.0;
+	proposedGroundAggressiveness /= 5.0;
+	proposedOverallAggressiveness /= 5.0;
+
+	std::cout << "Proposed Counter Strategy:\n"
+		<< "    Air / AA Aggressiveness: " << (proposedAirAggressiveness * -1) << std::endl
+		<< "    Ground / AG Aggressiveness: " << (proposedGroundAggressiveness * -1) << std::endl
+		<< "    Overall Defensiveness vs Aggressive: " << proposedOverallAggressiveness << std::endl;
 }
 
 
 Vertex StrategySpace::findNode(int race, Vertex node) {
-	printf("findNode()\n");
+	//printf("findNode()\n");
 
 	SCGraph& techTree = getTechTree(race);
 
@@ -148,7 +198,7 @@ Vertex StrategySpace::findNode(int race, Vertex node) {
 }
 
 SCGraph& StrategySpace::getTechTree(int race) {
-	printf("getTechTree()\n");
+	//printf("getTechTree()\n");
 
 	if (race == 0) {
 		return terranStrategySpace;

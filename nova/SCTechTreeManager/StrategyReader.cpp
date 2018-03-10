@@ -11,7 +11,7 @@ const std::string StrategyReader::TERRAN_STRATEGY_PATH = "Strategies/Templates/T
 StrategyReader::StrategyReader()
 {
 	//getTerranStrategies();
-	buildStrategies();
+	buildTerranStrategies();
 }
 
 
@@ -19,41 +19,7 @@ StrategyReader::~StrategyReader()
 {
 }
 
-Strategy StrategyReader::init() {
-	//TOY PROBLEM: Create Vulture Rush Strategy
-	printf("buildTree()\n");
-	// Populates the graph.
-	//root
-	printf("buildTree() - creating root\n");
-	VertexDescriptor command_center = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Command_Center, "Command Center", 1);
-
-	//depth1
-	printf("buildTree() - creating depth1\n");
-	VertexDescriptor barracks = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Barracks, "Barracks", 1);
-	boost::add_edge(command_center, barracks, 1, vultureRush);
-
-	//depth2
-	printf("buildTree() - creating depth2\n");
-	VertexDescriptor factory = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Factory, "Factory", 1);
-	boost::add_edge(barracks, factory, 1, vultureRush);
-
-	VertexDescriptor vulture = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Vulture, "Vulture", 1);
-	boost::add_edge(factory, vulture, 1, vultureRush);
-
-	//Calculate depth for all nodes
-	dijkstra_shortest_paths(vultureRush, command_center, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, vultureRush)));
-
-	GraphUtils::printTree(vultureRush, "Strategies/Templates/Terran/vultureRush.dot", false);
-
-	//read in strategy biases (air, ground, aggressive, etc)
-	Strategy strat;
-	strat.techTree = vultureRush;
-	strat.name = "Vulture Rush";
-	strat.aggressive_defensive_intensity = 1;
-	strat.air_aa_intensity = 0;
-	strat.ground_ag_intensity = 1;
-
-	return strat;
+void StrategyReader::init() {
 }
 
 
@@ -87,7 +53,9 @@ void StrategyReader::getTerranStrategies() {
 	}
 }
 
-void StrategyReader::buildStrategies() {
+std::vector<Strategy> StrategyReader::buildTerranStrategies() {
+	std::vector<Strategy> strategies;
+
 	// Populates the graph.
 	//root
 	SCGraph bioStrategyGraph;
@@ -124,8 +92,10 @@ void StrategyReader::buildStrategies() {
 	bioStrategy.aggressive_defensive_intensity = 1;
 	bioStrategy.air_aa_intensity = -0.25;
 	bioStrategy.ground_ag_intensity = 0.75;
+	bioStrategy.maxDepth = 3;
 
 	GraphUtils::printTree(bioStrategyGraph, "Strategies/Templates/Terran/bio.dot", false);
+	strategies.push_back(bioStrategy);
 
 
 	// Populates the graph.
@@ -149,8 +119,10 @@ void StrategyReader::buildStrategies() {
 	raxFeStrategy.aggressive_defensive_intensity = -1;
 	raxFeStrategy.air_aa_intensity = 0;
 	raxFeStrategy.ground_ag_intensity = 0;
+	raxFeStrategy.maxDepth = 1;
 
 	GraphUtils::printTree(raxFeStrategyGraph, "Strategies/Templates/Terran/rax_fe.dot", false);	
+	strategies.push_back(raxFeStrategy);
 
 
 
@@ -183,12 +155,48 @@ void StrategyReader::buildStrategies() {
 	//read in strategy biases (air, ground, aggressive, etc)
 	Strategy wraithStrategy;
 	wraithStrategy.techTree = wraithStrategyGraph;
-	wraithStrategy.name = "Rax_fe";
-	wraithStrategy.aggressive_defensive_intensity = -1;
-	wraithStrategy.air_aa_intensity = 0;
-	wraithStrategy.ground_ag_intensity = 0;
+	wraithStrategy.name = "Air";
+	wraithStrategy.aggressive_defensive_intensity = 0.25;
+	wraithStrategy.air_aa_intensity = 0.75;
+	wraithStrategy.ground_ag_intensity = -0.5;
+	wraithStrategy.maxDepth = 4;
+	strategies.push_back(wraithStrategy);
 
 	GraphUtils::printTree(wraithStrategyGraph, "Strategies/Templates/Terran/wraith.dot", false);
 
 
+	//TOY PROBLEM: Create Vulture Rush Strategy
+	SCGraph vultureRush;
+	// Populates the graph.
+	//root
+	VertexDescriptor cc4 = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Command_Center, "Command Center", 1);
+
+	//depth1
+	VertexDescriptor b4 = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Barracks, "Barracks", 1);
+	boost::add_edge(cc4, b4, 1, vultureRush);
+
+	//depth2
+	VertexDescriptor f4 = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Factory, "Factory", 1);
+	boost::add_edge(b4, f4, 1, vultureRush);
+
+	VertexDescriptor v4 = GraphUtils::addNode(vultureRush, BWAPI::UnitTypes::Terran_Vulture, "Vulture", 1);
+	boost::add_edge(f4, v4, 1, vultureRush);
+
+	//Calculate depth for all nodes
+	dijkstra_shortest_paths(vultureRush, command_center, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, vultureRush)));
+
+	//read in strategy biases (air, ground, aggressive, etc)
+	Strategy strat;
+	strat.techTree = vultureRush;
+	strat.name = "Vulture Rush";
+	strat.aggressive_defensive_intensity = 1;
+	strat.air_aa_intensity = 0;
+	strat.ground_ag_intensity = 1;
+	strat.maxDepth = 2;
+
+
+	GraphUtils::printTree(vultureRush, "Strategies/Templates/Terran/vultureRush.dot", false);
+	strategies.push_back(strat);
+
+	return strategies;
 } 

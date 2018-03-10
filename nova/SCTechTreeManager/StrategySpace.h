@@ -43,6 +43,12 @@ public:
 
 	Vertex findNode(int race, Vertex node);
 
+	VertexDescriptor& getTerranStrategyRoot();
+	VertexDescriptor& getProtossStrategyRoot();
+	VertexDescriptor& getZergStrategyRoot();
+
+	void printStrategySpaces();
+
 private:
 	//Graph representing the combined strategies of the Terran Race
 	SCGraph terranStrategySpace;

@@ -1,0 +1,3 @@
+digraph G {
+Hatchery [depth=0, penwidth=1, strength=1];
+}
