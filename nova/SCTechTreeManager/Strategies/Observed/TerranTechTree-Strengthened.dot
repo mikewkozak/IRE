@@ -1,10 +1,10 @@
 digraph G {
-"Command Center" [depth=0, penwidth=15, strength=15];
+"Command Center" [depth=0, penwidth=27, strength=27];
 "Supply Depot" [depth=2147483647, penwidth=1, strength=1];
 Refinery [depth=2147483647, penwidth=1, strength=1];
 Barracks [depth=1, penwidth=15, strength=15];
 "Engineering Bay" [depth=1, penwidth=1, strength=1];
-SCV [depth=1, penwidth=1, strength=1];
+SCV [depth=1, penwidth=13, strength=13];
 Factory [depth=2, penwidth=8, strength=8];
 Bunker [depth=2, penwidth=1, strength=1];
 Academy [depth=2, penwidth=1, strength=1];
