@@ -1,3 +1,7 @@
+/*
+TerranTreeManager.h
+Class representing the full tech tree for the Terran Race.
+*/
 #include <list>
 
 //Graph structure and strategy axes
@@ -8,26 +12,25 @@
 
 
 #pragma once
+/*
+Class representing the full tech tree for the Terran Race.
+*/
 class TerranTreeManager
 {
 public:
 	TerranTreeManager();
 	~TerranTreeManager();
 
-	void buildTree();
-
 	/*
 	Given a unit, building, or upgrade, traverse up the tree to the root and strengthen every edge along the way
 	*/
 	void strengthenTree(BWAPI::UnitType type);
 
-	/*
-	Given a strategy subtree, strengthen every edge in the tech tree that matches the strategy tree
-	*/
-	//void strengthenStrategy();
-
 	SCGraph& getTree();
 
+	/*
+	Identifies the current strategy most likely being performed by the enemy. Acts as a passthrough to the Strategy Space to avoid circular dependencies
+	*/
 	void identifyStrategy();
 
 private:
@@ -35,8 +38,10 @@ private:
 	SCGraph techTree;
 
 
-	//TOY PROBLEM
+	//Handles to strategy space and a reader for reading in the strategies
 	StrategySpace strategies;
 	StrategyReader reader;
+
+	void buildTree();
 };
 

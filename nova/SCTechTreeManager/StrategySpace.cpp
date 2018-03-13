@@ -51,6 +51,9 @@ void StrategySpace::addStrategy(int race, Strategy strat) {
 		//std::cout << "Examining " << strat.techTree[*it.first].name << std::endl;
 		if (strat.techTree[*it.first].node != NULL) {
 			
+			//Set the position of the node in strategy space as a factor of depth and intensities. The lowest leaf in the tree will be
+			//scaled to be the same value as the intensity, with all other nodes linearly scaled based on percent depth
+
 			double xpos = (strat.techTree[*it.first].depth / strat.maxDepth) * /*cur_child / max_children*/ strat.air_aa_intensity;
 			strat.techTree[*it.first].location.set<StrategySpace::AIR_AA_AXIS>(xpos);
 
@@ -65,11 +68,11 @@ void StrategySpace::addStrategy(int race, Strategy strat) {
 		}
 	}
 
-	//add strat tech tree to terranStrategySpace
-	typedef std::map<VertexDescriptor, size_t> IndexMap;
+	//add strat tech tree to terranStrategySpace by copying the new tree into the root tree
 	IndexMap mapIndex;
 	boost::associative_property_map<IndexMap> propmapIndex(mapIndex);
 	int i = 0;
+	//Copy each vertex into the strategy space graph
 	BGL_FORALL_VERTICES(v, strat.techTree, SCGraph)
 	{
 		put(propmapIndex, v, i++);
@@ -86,20 +89,26 @@ void StrategySpace::strengthenTree(int race, BWAPI::UnitType type) {
 	//add strategy to the correct race graph
 	SCGraph& techTree = getTechTree(race);
 
+	//Search for matching unit types (may appear multiple times)
 	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(techTree); it.first != it.second; ++it.first) {
 		//std::cout << "Examining " << techTree[*it.first].name << std::endl;
+
 		if (techTree[*it.first].node == type) {
 			//std::cout << "Match found!!\n";
+
+			//Increment the strength of the node for use in detecting strategies
 			techTree[*it.first].strength++;
-			//Once you've found it, you need to reverse the directed to walk it to the root
+
+			//Once you've found it, you need to reverse the directed to walk it to the root in boost since the graph is directed
 			Rgraph rgraph(techTree);
 			Rgraph::adjacency_iterator rbegin, rend;
 			boost::tie(rbegin, rend) = boost::adjacent_vertices(*it.first, rgraph);
+
+			//Walk the graph from the current node to the root and strengthen each one
 			while (rbegin != rend) {
 				//for (boost::tie(rbegin, rend) = boost::adjacent_vertices(*it.first, rgraph); rbegin != rend; ++rbegin) {
 
 				std::cout << "Strengthening " << techTree[*rbegin].name << std::endl;
-				//traverse up to root and strengthen the nodes along the way
 				techTree[*rbegin].strength++;
 				boost::tie(rbegin, rend) = boost::adjacent_vertices(*rbegin, rgraph);
 
@@ -121,17 +130,19 @@ void StrategySpace::strengthenTree(int race, BWAPI::UnitType type) {
 void StrategySpace::identifyStrategy(int race) {
 	printf("identifyStrategy()\n");
 
+	//ID strategy for the correct race 
 	SCGraph& techTree = getTechTree(race);
 
 	//keep track of the top 5 largest vertices, but ignore any vertex with current_max values (these are the common nodes)
 	std::list<Vertex> vertices;
 
-	//for all vertices in the tree
+	//add all vertices in the tree to the list... there's probably a more efficient way to do this, perhaps by relying on the graph structure itself
 	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(techTree); it.first != it.second; ++it.first) {
 		//std::cout << "Examining " << techTree[*it.first].name << std::endl;
 		vertices.push_back(techTree[*it.first]);
 	}
 
+	//Sort the vertices from largest to smallest by strength
 	vertices.sort(VertexComparator());
 
 	//once the list has been populated, identify in which regions the vertices are
@@ -139,10 +150,15 @@ void StrategySpace::identifyStrategy(int race) {
 	std::list<Vertex>::iterator iter;
 	int count = 0;
 
+	//These will become the average of all the top nodes
 	double proposedAirAggressiveness = 0;
 	double proposedGroundAggressiveness = 0;
 	double proposedOverallAggressiveness = 0;
+
+	//For the top 5 vertices or all vertices, whichever comes first
 	for (iter = vertices.begin(); (iter != vertices.end() && count < 5); iter++) {
+
+		//Find the node in the tree that matches this vertex
 		Vertex strategyNode = findNode(0, (*iter));
 
 		//We want to ignore all the "common" nodes
@@ -155,12 +171,15 @@ void StrategySpace::identifyStrategy(int race) {
 
 		if (strategyNode.name == "") {
 			std::cout << "No Node Match for " << (*iter).name << std::endl;
+			//We should never get here
 		}
 		else {
+			//Get the intensities of the strategy along the axes of the strategy space
 			double airAggressiveness = strategyNode.location.get<StrategySpace::AIR_AA_AXIS>();
 			double groundAggressiveness = strategyNode.location.get<StrategySpace::GROUND_AG_AXIS>();
 			double overallAggressiveness = strategyNode.location.get<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>();
 
+			//Add them to the running total
 			proposedAirAggressiveness += airAggressiveness;
 			proposedGroundAggressiveness += groundAggressiveness;
 			proposedOverallAggressiveness += overallAggressiveness;
@@ -170,11 +189,12 @@ void StrategySpace::identifyStrategy(int race) {
 		count++;
 	}
 
-	//Take the average intensity of all node points
+	//Take the average intensity of all identified strategy nodes
 	proposedAirAggressiveness /= 5.0;
 	proposedGroundAggressiveness /= 5.0;
 	proposedOverallAggressiveness /= 5.0;
 
+	//The propose counter-stragey should be the opposite intensity along each axis
 	std::cout << "Proposed Counter Strategy:\n"
 		<< "    Air / AA Aggressiveness: " << (proposedAirAggressiveness * -1) << std::endl
 		<< "    Ground / AG Aggressiveness: " << (proposedGroundAggressiveness * -1) << std::endl
@@ -196,6 +216,7 @@ Vertex StrategySpace::findNode(int race, Vertex node) {
 
 	return match;
 }
+
 
 SCGraph& StrategySpace::getTechTree(int race) {
 	//printf("getTechTree()\n");

@@ -3,9 +3,10 @@
 
 using namespace BWAPI;
 
-TerranTreeManager::TerranTreeManager()
-{
+TerranTreeManager::TerranTreeManager() {
 	printf("TerranTreeManager()\n");
+
+	buildTree();
 	
 	//TOY PROBLEM
 	//std::vector<Strategy> strats = reader.buildTerranStrategies(strategies.getTerranStrategyRoot());
@@ -20,9 +21,7 @@ TerranTreeManager::TerranTreeManager()
 }
 
 
-TerranTreeManager::~TerranTreeManager()
-{
-}
+TerranTreeManager::~TerranTreeManager() {}
 
 void TerranTreeManager::buildTree() {
 	printf("buildTree()\n");

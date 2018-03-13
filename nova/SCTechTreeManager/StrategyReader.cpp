@@ -19,10 +19,6 @@ StrategyReader::~StrategyReader()
 {
 }
 
-void StrategyReader::init() {
-}
-
-
 void StrategyReader::getTerranStrategies() {
 	// list all files in current directory.
 	//You could put any file path in here, e.g. "/home/me/mwah" to list that directory
@@ -39,16 +35,16 @@ void StrategyReader::getTerranStrategies() {
 			std::string current_file = itr->path().string();
 			std::cout << "Reading Strategy File: " << current_file << std::endl;
 
-			
-			SCGraph graphviz;
+			//Define the properties to read in to the nodes of the graph
+			SCGraph strategy;
 			boost::dynamic_properties dp;// (boost::ignore_other_properties);
-			dp.property("node_id", get(&Vertex::name, graphviz));
-			dp.property("strength", get(&Vertex::strength, graphviz));
-			dp.property("depth", get(&Vertex::depth, graphviz));
+			dp.property("node_id", get(&Vertex::name, strategy));
+			dp.property("strength", get(&Vertex::strength, strategy));
+			dp.property("depth", get(&Vertex::depth, strategy));
 
 			
 			std::ifstream dot(current_file);
-			read_graphviz(dot, graphviz, dp);
+			read_graphviz(dot, strategy, dp);
 		}
 	}
 }
@@ -94,8 +90,12 @@ std::vector<Strategy> StrategyReader::buildTerranStrategies() {
 	bioStrategy.ground_ag_intensity = 0.75;
 	bioStrategy.maxDepth = 3;
 
+	//Write the strategy to file
 	GraphUtils::printTree(bioStrategyGraph, "Strategies/Templates/Terran/bio.dot", false);
+
+	//Add the strategy to the list of strategies
 	strategies.push_back(bioStrategy);
+
 
 
 	// Populates the graph.
