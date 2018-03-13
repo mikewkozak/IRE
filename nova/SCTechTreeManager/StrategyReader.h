@@ -31,6 +31,16 @@ public:
 	*/
 	std::vector<Strategy> buildTerranStrategies();
 
+	/*
+	Function that generates Zerg strategies and writes them off to DOT files for future reference
+	*/
+	std::vector<Strategy> buildZergStrategies();
+
+	/*
+	Function that generates Protoss strategies and writes them off to DOT files for future reference
+	*/
+	std::vector<Strategy> buildProtossStrategies();
+
 private:
 	//Path to the Terran Strategy Files
 	static const std::string TERRAN_STRATEGY_PATH;

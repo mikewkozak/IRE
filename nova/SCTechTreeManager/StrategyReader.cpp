@@ -202,3 +202,44 @@ std::vector<Strategy> StrategyReader::buildTerranStrategies() {
 
 	return strategies;
 } 
+
+std::vector<Strategy> StrategyReader::buildZergStrategies() {
+	std::vector<Strategy> strategies;
+
+	//read in strategy biases (air, ground, aggressive, etc)
+	Strategy strat;
+	//strat.techTree = vultureRush;
+	strat.name = "Vulture Rush";
+	strat.aggressive_defensive_intensity = 1;
+	strat.air_aa_intensity = 0;
+	strat.ground_ag_intensity = 1;
+	strat.maxDepth = 2;
+
+
+	//GraphUtils::printTree(vultureRush, "Strategies/Templates/Zerg/vultureRush.dot", false);
+	strategies.push_back(strat);
+
+	return strategies;
+
+}
+
+
+std::vector<Strategy> StrategyReader::buildProtossStrategies() {
+	std::vector<Strategy> strategies;
+
+	//read in strategy biases (air, ground, aggressive, etc)
+	Strategy strat;
+	//strat.techTree = vultureRush;
+	strat.name = "Vulture Rush";
+	strat.aggressive_defensive_intensity = 1;
+	strat.air_aa_intensity = 0;
+	strat.ground_ag_intensity = 1;
+	strat.maxDepth = 2;
+
+
+	//GraphUtils::printTree(vultureRush, "Strategies/Templates/Protoss/vultureRush.dot", false);
+	strategies.push_back(strat);
+
+	return strategies;
+
+}

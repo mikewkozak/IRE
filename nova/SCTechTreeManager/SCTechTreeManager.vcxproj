@@ -152,15 +152,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GraphUtils.h" />
+    <ClInclude Include="ProtossTreeManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StrategyReader.h" />
     <ClInclude Include="StrategySpace.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TerranTreeManager.h" />
+    <ClInclude Include="ZergTreeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphUtils.cpp" />
+    <ClCompile Include="ProtossTreeManager.cpp" />
     <ClCompile Include="SCTechTreeManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -171,6 +174,7 @@
     <ClCompile Include="StrategyReader.cpp" />
     <ClCompile Include="StrategySpace.cpp" />
     <ClCompile Include="TerranTreeManager.cpp" />
+    <ClCompile Include="ZergTreeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SCTechTreeManager.rc" />

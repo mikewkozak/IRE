@@ -36,6 +36,12 @@
     <ClInclude Include="GraphUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ZergTreeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtossTreeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GraphUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZergTreeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtossTreeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
