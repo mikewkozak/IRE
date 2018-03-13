@@ -155,8 +155,8 @@ void StrategySpace::identifyStrategy(int race) {
 	double proposedGroundAggressiveness = 0;
 	double proposedOverallAggressiveness = 0;
 
-	//For the top 5 vertices or all vertices, whichever comes first
-	for (iter = vertices.begin(); (iter != vertices.end() && count < 5); iter++) {
+	//For the top NUM_STRATEGY_NODES vertices or all vertices, whichever comes first
+	for (iter = vertices.begin(); (iter != vertices.end() && count < NUM_STRATEGY_NODES); iter++) {
 
 		//Find the node in the tree that matches this vertex
 		Vertex strategyNode = findNode(0, (*iter));
@@ -190,9 +190,9 @@ void StrategySpace::identifyStrategy(int race) {
 	}
 
 	//Take the average intensity of all identified strategy nodes
-	proposedAirAggressiveness /= 5.0;
-	proposedGroundAggressiveness /= 5.0;
-	proposedOverallAggressiveness /= 5.0;
+	proposedAirAggressiveness /= (NUM_STRATEGY_NODES * 1.0);
+	proposedGroundAggressiveness /= (NUM_STRATEGY_NODES * 1.0);
+	proposedOverallAggressiveness /= (NUM_STRATEGY_NODES * 1.0);
 
 	//The propose counter-stragey should be the opposite intensity along each axis
 	std::cout << "Proposed Counter Strategy:\n"

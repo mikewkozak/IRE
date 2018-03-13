@@ -33,6 +33,9 @@ public:
 	static const int AGGRESSIVE_DEFENSIVE_AXIS_MAX = 1;
 	static const int AGGRESSIVE_DEFENSIVE_AXIS_MIN = -1;
 
+	//number of nodes to consider in strategy evaluation
+	static const int NUM_STRATEGY_NODES = 5;
+
 
 	StrategySpace();
 	~StrategySpace();

@@ -34,5 +34,11 @@ public:
 private:
 	//Path to the Terran Strategy Files
 	static const std::string TERRAN_STRATEGY_PATH;
+
+	//Path to the Protoss Strategy Files
+	static const std::string PROTOSS_STRATEGY_PATH;
+
+	//Path to the Zerg Strategy Files
+	static const std::string ZERG_STRATEGY_PATH;
 };
 

@@ -7,6 +7,8 @@ using namespace boost::filesystem;
 
 //Define path consts
 const std::string StrategyReader::TERRAN_STRATEGY_PATH = "Strategies/Templates/Terran/";
+const std::string StrategyReader::PROTOSS_STRATEGY_PATH = "Strategies/Templates/Protoss/";
+const std::string StrategyReader::ZERG_STRATEGY_PATH = "Strategies/Templates/Zerg/";
 
 StrategyReader::StrategyReader()
 {
