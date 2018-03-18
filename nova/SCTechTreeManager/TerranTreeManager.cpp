@@ -17,7 +17,7 @@ TerranTreeManager::TerranTreeManager() {
 		strategies.addStrategy(BWAPI::Races::Terran, strats[i]);
 	}
 
-	strategies.printStrategySpaces();
+	GraphUtils::printTree(strategies.getTechTree(BWAPI::Races::Terran), "Strategies/StrategySpace/TerranStrategies.dot", false);
 }
 
 

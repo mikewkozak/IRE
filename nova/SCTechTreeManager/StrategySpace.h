@@ -67,10 +67,11 @@ public:
 	VertexDescriptor& getProtossStrategyRoot();
 	VertexDescriptor& getZergStrategyRoot();
 
+
 	/*
-	Support function that prints all the strategy spaces to file using the GraphUtil static functions
+	Support function that returns the strategy space associated with the given race
 	*/
-	void printStrategySpaces();
+	SCGraph& getTechTree(BWAPI::Race race);
 
 private:
 	//Graph representing the combined strategies of the Terran Race
@@ -84,10 +85,5 @@ private:
 	//Graph representing the combined strategies of the Zerg Race
 	SCGraph zergStrategySpace;
 	VertexDescriptor zergStrategySpaceRoot;
-
-	/*
-	Support function that returns the strategy space associated with the given race
-	*/
-	SCGraph& getTechTree(BWAPI::Race race);
 };
 

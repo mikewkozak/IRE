@@ -18,7 +18,7 @@ ZergTreeManager::ZergTreeManager() {
 		strategies.addStrategy(BWAPI::Races::Zerg, strats[i]);
 	}
 
-	strategies.printStrategySpaces();
+	GraphUtils::printTree(strategies.getTechTree(BWAPI::Races::Zerg), "Strategies/StrategySpace/ZergStrategies.dot", false);
 }
 
 

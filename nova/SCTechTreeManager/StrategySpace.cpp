@@ -28,12 +28,6 @@ VertexDescriptor& StrategySpace::getZergStrategyRoot() {
 	return zergStrategySpaceRoot;
 }
 
-void StrategySpace::printStrategySpaces() {
-	GraphUtils::printTree(terranStrategySpace, "Strategies/StrategySpace/TerranStrategies.dot", false);
-	GraphUtils::printTree(zergStrategySpace, "Strategies/StrategySpace/ZergStrategies.dot", false);
-	GraphUtils::printTree(protossStrategySpace, "Strategies/StrategySpace/ProtossStrategies.dot", false);
-}
-
 void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 	printf("addStrategy()");
 

@@ -18,7 +18,7 @@ ProtossTreeManager::ProtossTreeManager() {
 		strategies.addStrategy(BWAPI::Races::Protoss, strats[i]);
 	}
 
-	strategies.printStrategySpaces();
+	GraphUtils::printTree(strategies.getTechTree(BWAPI::Races::Protoss), "Strategies/StrategySpace/ProtossStrategies.dot", false);
 }
 
 
