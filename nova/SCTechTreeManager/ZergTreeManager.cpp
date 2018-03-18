@@ -96,6 +96,9 @@ void ZergTreeManager::buildTree() {
 	VertexDescriptor mutalisk = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Mutalisk, "Mutalisk", 1);
 	boost::add_edge(spire, mutalisk, 1, techTree);
 
+	VertexDescriptor lurker = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Lurker, "Lurker", 1);
+	boost::add_edge(hydralisk, lurker, 1, techTree);
+
 
 	//depth 5
 	printf("buildTree() - creating depth5\n");

@@ -817,8 +817,36 @@ Strategy StrategyReader::buildMutas() {
 	// Populates the graph.
 	SCGraph techTree;
 
+	//root
+	VertexDescriptor hatchery = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hatchery, "Hatchery", 1);
+	VertexDescriptor extractor = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Extractor, "Extractor", 1);
+	VertexDescriptor creep_colony = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Creep_Colony, "Creep Colony", 1);
+
+
+	//depth1
+	VertexDescriptor spawning_pool = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spawning_Pool, "Spawning Pool", 1);
+	boost::add_edge(hatchery, spawning_pool, 1, techTree);
+
+
+	//depth2
+	VertexDescriptor lair = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Lair, "Lair", 1);
+	boost::add_edge(spawning_pool, lair, 1, techTree);
+
+	VertexDescriptor zergling = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Zergling, "Zergling", 1);
+	boost::add_edge(spawning_pool, zergling, 1, techTree);
+
+
+	//depth3
+	VertexDescriptor spire = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spire, "Spire", 1);
+	boost::add_edge(lair, spire, 1, techTree);
+
+	//depth 4
+	VertexDescriptor mutalisk = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Mutalisk, "Mutalisk", 1);
+	boost::add_edge(spire, mutalisk, 1, techTree);
+
+
 	//Calculate depth for all nodes
-	//dijkstra_shortest_paths(techTree, hatchery, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
+	dijkstra_shortest_paths(techTree, hatchery, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
 
 	//read in strategy biases (air, ground, aggressive, etc)
 	Strategy strat;
@@ -840,20 +868,42 @@ Strategy StrategyReader::buildLurkers() {
 	// Populates the graph.
 	SCGraph techTree;
 
+	//root
+	VertexDescriptor hatchery = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hatchery, "Hatchery", 1);
+
+	//depth1
+	VertexDescriptor spawning_pool = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spawning_Pool, "Spawning Pool", 1);
+	VertexDescriptor evolution_chamber = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Evolution_Chamber, "Evolution Chamber", 1);
+	boost::add_edge(hatchery, spawning_pool, 1, techTree);
+	boost::add_edge(hatchery, evolution_chamber, 1, techTree);
+
+	//depth2
+	VertexDescriptor hydralisk_den = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hydralisk_Den, "Hydralisk Den", 1);
+	boost::add_edge(spawning_pool, hydralisk_den, 1, techTree);
+
+	//depth3
+	VertexDescriptor hydralisk = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hydralisk, "Hydralisk", 1);
+	boost::add_edge(hydralisk_den, hydralisk, 1, techTree);
+
+	//depth 4
+	VertexDescriptor lurker = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Lurker, "Lurker", 1);
+	boost::add_edge(hydralisk, lurker, 1, techTree);
+
+
 	//Calculate depth for all nodes
-	//dijkstra_shortest_paths(techTree, hatchery, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
+	dijkstra_shortest_paths(techTree, hatchery, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
 
 	//read in strategy biases (air, ground, aggressive, etc)
 	Strategy strat;
 	strat.techTree = techTree;
-	strat.name = "Mutas";
+	strat.name = "Lurkers";
 	strat.aggressive_defensive_intensity = -0.25;
 	strat.air_aa_intensity = 0;
 	strat.ground_ag_intensity = 0;
 	strat.maxDepth = 4;
 
 	//Write the strategy to file
-	GraphUtils::printTree(techTree, "Strategies/Templates/Zerg/Mutas.dot", false);
+	GraphUtils::printTree(techTree, "Strategies/Templates/Zerg/Lurkers.dot", false);
 
 	return strat;
 }
@@ -863,20 +913,38 @@ Strategy StrategyReader::buildHydras() {
 	// Populates the graph.
 	SCGraph techTree;
 
+	//root
+	VertexDescriptor hatchery = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hatchery, "Hatchery", 1);
+
+	//depth1
+	VertexDescriptor spawning_pool = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spawning_Pool, "Spawning Pool", 1);
+	boost::add_edge(hatchery, spawning_pool, 1, techTree);
+	
+
+	//depth2
+	VertexDescriptor hydralisk_den = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hydralisk_Den, "Hydralisk Den", 1);
+	boost::add_edge(spawning_pool, hydralisk_den, 1, techTree);
+
+
+	//depth3
+	VertexDescriptor hydralisk = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hydralisk, "Hydralisk", 1);
+	boost::add_edge(hydralisk_den, hydralisk, 1, techTree);
+
+
 	//Calculate depth for all nodes
-	//dijkstra_shortest_paths(techTree, hatchery, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
+	dijkstra_shortest_paths(techTree, hatchery, boost::weight_map(boost::make_constant_property<EdgeDescriptor>(1)).distance_map(get(&Vertex::depth, techTree)));
 
 	//read in strategy biases (air, ground, aggressive, etc)
 	Strategy strat;
 	strat.techTree = techTree;
-	strat.name = "Mutas";
-	strat.aggressive_defensive_intensity = -0.75;
+	strat.name = "Hydras";
+	strat.aggressive_defensive_intensity = 0.75;
 	strat.air_aa_intensity = -0.25;
 	strat.ground_ag_intensity = 1;
-	strat.maxDepth = 4;
+	strat.maxDepth = 3;
 
 	//Write the strategy to file
-	GraphUtils::printTree(techTree, "Strategies/Templates/Zerg/Mutas.dot", false);
+	GraphUtils::printTree(techTree, "Strategies/Templates/Zerg/Hydras.dot", false);
 
 	return strat;
 }

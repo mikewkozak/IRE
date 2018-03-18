@@ -1,0 +1,9 @@
+digraph G {
+Hatchery [depth=0, penwidth=1, strength=1];
+"Spawning Pool" [depth=1, penwidth=1, strength=1];
+"Hydralisk Den" [depth=2, penwidth=1, strength=1];
+Hydralisk [depth=3, penwidth=1, strength=1];
+Hatchery->"Spawning Pool" ;
+"Spawning Pool"->"Hydralisk Den" ;
+"Hydralisk Den"->Hydralisk ;
+}
