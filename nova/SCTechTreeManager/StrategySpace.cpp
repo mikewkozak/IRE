@@ -34,7 +34,7 @@ void StrategySpace::printStrategySpaces() {
 	GraphUtils::printTree(protossStrategySpace, "Strategies/StrategySpace/ProtossStrategies.dot", false);
 }
 
-void StrategySpace::addStrategy(int race, Strategy strat) {
+void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 	printf("addStrategy()");
 
 	std::cout << " Adding Strategy " << strat.name << " of depth " << strat.maxDepth
@@ -68,7 +68,7 @@ void StrategySpace::addStrategy(int race, Strategy strat) {
 		}
 	}
 
-	//add strat tech tree to terranStrategySpace by copying the new tree into the root tree
+	//add strat tech tree to race strategy space by copying the new tree into the root tree
 	IndexMap mapIndex;
 	boost::associative_property_map<IndexMap> propmapIndex(mapIndex);
 	int i = 0;
@@ -83,7 +83,7 @@ void StrategySpace::addStrategy(int race, Strategy strat) {
 	//techTree = strat.techTree;
 }
 
-void StrategySpace::strengthenTree(int race, BWAPI::UnitType type) {
+void StrategySpace::strengthenTree(BWAPI::Race race, BWAPI::UnitType type) {
 	std::cout << "strengthenTree()\n";// -search for match to " << type.getName() << std::endl;
 
 	//add strategy to the correct race graph
@@ -127,7 +127,7 @@ void StrategySpace::strengthenTree(int race, BWAPI::UnitType type) {
 }
 
 
-void StrategySpace::identifyStrategy(int race) {
+void StrategySpace::identifyStrategy(BWAPI::Race race) {
 	printf("identifyStrategy()\n");
 
 	//ID strategy for the correct race 
@@ -159,7 +159,7 @@ void StrategySpace::identifyStrategy(int race) {
 	for (iter = vertices.begin(); (iter != vertices.end() && count < NUM_STRATEGY_NODES); iter++) {
 
 		//Find the node in the tree that matches this vertex
-		Vertex strategyNode = findNode(0, (*iter));
+		Vertex strategyNode = findNode(race, (*iter));
 
 		//We want to ignore all the "common" nodes
 		if ((strategyNode.node == BWAPI::UnitTypes::Terran_Command_Center) ||
@@ -202,7 +202,7 @@ void StrategySpace::identifyStrategy(int race) {
 }
 
 
-Vertex StrategySpace::findNode(int race, Vertex node) {
+Vertex StrategySpace::findNode(BWAPI::Race race, Vertex node) {
 	//printf("findNode()\n");
 
 	SCGraph& techTree = getTechTree(race);
@@ -218,16 +218,19 @@ Vertex StrategySpace::findNode(int race, Vertex node) {
 }
 
 
-SCGraph& StrategySpace::getTechTree(int race) {
-	//printf("getTechTree()\n");
+SCGraph& StrategySpace::getTechTree(BWAPI::Race race) {
+	//std::cout<< "StrategySpace::getTechTree() - Getting tech tree for " << race.c_str() << std::endl;
 
-	if (race == 0) {
+	if (race == BWAPI::Races::Terran) {
+		printf("Retrieving TERRAN tech tree\n");
 		return terranStrategySpace;
 	}
-	else if (race == 1) {
+	else if (race == BWAPI::Races::Protoss) {
+		printf("Retrieving PROTOSS tech tree\n");
 		return protossStrategySpace;
 	}
-	else if (race == 2) {
+	else if (race == BWAPI::Races::Zerg) {
+		printf("Retrieving ZERG tech tree\n");
 		return zergStrategySpace;
 	}
 	else {

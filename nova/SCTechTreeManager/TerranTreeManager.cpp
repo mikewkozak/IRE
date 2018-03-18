@@ -14,7 +14,7 @@ TerranTreeManager::TerranTreeManager() {
 
 	for (unsigned int i = 0; i < strats.size(); i++) {
 		std::cout << "TerranTreeManager() - Adding Strategy: " << strats[i].name << std::endl;
-		strategies.addStrategy(0, strats[i]);
+		strategies.addStrategy(BWAPI::Races::Terran, strats[i]);
 	}
 
 	strategies.printStrategySpaces();
@@ -165,83 +165,9 @@ void TerranTreeManager::strengthenTree(UnitType type) {
 	}
 	
 	//do so for all strategy trees
-	strategies.strengthenTree(0, type);
+	strategies.strengthenTree(BWAPI::Races::Terran, type);
 }
 
 void TerranTreeManager::identifyStrategy() {
-	strategies.identifyStrategy(0);
+	strategies.identifyStrategy(BWAPI::Races::Terran);
 }
-
-	// check dependencies
-	/*
-	if (upgradeType == UpgradeTypes::U_238_Shells || upgradeType == UpgradeTypes::Caduceus_Reactor) {
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Academy, true);
-	}
-	else if (upgradeType == UpgradeTypes::Terran_Infantry_Weapons || upgradeType == UpgradeTypes::Terran_Infantry_Armor) {
-		buildRequest(UnitTypes::Terran_Engineering_Bay, true);
-		if (level > 1) {
-			buildRequest(UnitTypes::Terran_Engineering_Bay, true);
-			buildRequest(UnitTypes::Terran_Barracks, true);
-			buildRequest(UnitTypes::Terran_Refinery, true);
-			buildRequest(UnitTypes::Terran_Factory, true);
-			buildRequest(UnitTypes::Terran_Starport, true);
-			buildRequest(UnitTypes::Terran_Science_Facility, true);
-		}
-	}
-	else if (upgradeType == UpgradeTypes::Ion_Thrusters || upgradeType == UpgradeTypes::Charon_Boosters) {
-		//Machine Shop
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Factory, true);
-		buildRequest(UnitTypes::Terran_Machine_Shop, true);
-		if (upgradeType == UpgradeTypes::Charon_Boosters)
-			buildRequest(UnitTypes::Terran_Armory, true);
-	}
-	else if (upgradeType == UpgradeTypes::Terran_Vehicle_Weapons || upgradeType == UpgradeTypes::Terran_Vehicle_Plating ||
-		upgradeType == UpgradeTypes::Terran_Ship_Weapons || upgradeType == UpgradeTypes::Terran_Ship_Plating) {
-		//Armory
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Factory, true);
-		buildRequest(UnitTypes::Terran_Armory, true);
-		if (level > 1) {
-			buildRequest(UnitTypes::Terran_Starport, true);
-			buildRequest(UnitTypes::Terran_Science_Facility, true);
-		}
-	}
-	else if (upgradeType == UpgradeTypes::Apollo_Reactor) {
-		//Control Tower
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Factory, true);
-		buildRequest(UnitTypes::Terran_Starport, true);
-		buildRequest(UnitTypes::Terran_Control_Tower, true);
-	}
-	else if (upgradeType == UpgradeTypes::Titan_Reactor) {
-		//Science Facility
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Factory, true);
-		buildRequest(UnitTypes::Terran_Starport, true);
-		buildRequest(UnitTypes::Terran_Science_Facility, true);
-	}
-	else if (upgradeType == UpgradeTypes::Colossus_Reactor) {
-		//Physics Lab
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Factory, true);
-		buildRequest(UnitTypes::Terran_Starport, true);
-		buildRequest(UnitTypes::Terran_Science_Facility, true);
-		buildRequest(UnitTypes::Terran_Physics_Lab, true);
-	}
-	else if (upgradeType == UpgradeTypes::Ocular_Implants || upgradeType == UpgradeTypes::Moebius_Reactor) {
-		//Covert Ops
-		buildRequest(UnitTypes::Terran_Barracks, true);
-		buildRequest(UnitTypes::Terran_Refinery, true);
-		buildRequest(UnitTypes::Terran_Factory, true);
-		buildRequest(UnitTypes::Terran_Starport, true);
-		buildRequest(UnitTypes::Terran_Science_Facility, true);
-		buildRequest(UnitTypes::Terran_Covert_Ops, true);
-	}*/

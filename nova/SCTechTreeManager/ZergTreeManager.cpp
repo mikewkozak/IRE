@@ -15,7 +15,7 @@ ZergTreeManager::ZergTreeManager() {
 
 	for (unsigned int i = 0; i < strats.size(); i++) {
 		std::cout << "ZergTreeManager() - Adding Strategy: " << strats[i].name << std::endl;
-		strategies.addStrategy(0, strats[i]);
+		strategies.addStrategy(BWAPI::Races::Zerg, strats[i]);
 	}
 
 	strategies.printStrategySpaces();
@@ -165,9 +165,9 @@ void ZergTreeManager::strengthenTree(UnitType type) {
 	}
 
 	//do so for all strategy trees
-	strategies.strengthenTree(0, type);
+	strategies.strengthenTree(BWAPI::Races::Zerg, type);
 }
 
 void ZergTreeManager::identifyStrategy() {
-	strategies.identifyStrategy(0);
+	strategies.identifyStrategy(BWAPI::Races::Zerg);
 }

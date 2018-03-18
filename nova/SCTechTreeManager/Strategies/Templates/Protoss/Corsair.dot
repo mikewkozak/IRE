@@ -1,0 +1,13 @@
+digraph G {
+Nexus [depth=0, penwidth=1, strength=1];
+Gateway [depth=1, penwidth=1, strength=1];
+"Cybernetics Core" [depth=2, penwidth=1, strength=1];
+Stargate [depth=3, penwidth=1, strength=1];
+"Fleet Beacon" [depth=4, penwidth=1, strength=1];
+Corsair [depth=4, penwidth=1, strength=1];
+Nexus->Gateway ;
+Gateway->"Cybernetics Core" ;
+"Cybernetics Core"->Stargate ;
+Stargate->"Fleet Beacon" ;
+Stargate->Corsair ;
+}

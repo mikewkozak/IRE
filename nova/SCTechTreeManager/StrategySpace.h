@@ -44,23 +44,23 @@ public:
 	Adds a new tree to the strategy space and lays out the nodes based on the intensity of the
 	strategy along each major axis in the space
 	*/
-	void addStrategy(int race, Strategy strat);
+	void addStrategy(BWAPI::Race race, Strategy strat);
 
 	/*
 	Given a unit, building, or upgrade, traverse up the tree to the root and strengthen every edge along the way
 	*/
-	void strengthenTree(int race, BWAPI::UnitType type);
+	void strengthenTree(BWAPI::Race race, BWAPI::UnitType type);
 
 
 	/*
 	Given the current state of the strategy space, ID which strategies are likely being used
 	*/
-	void identifyStrategy(int race);
+	void identifyStrategy(BWAPI::Race race);
 
 	/*
 	Support function that finds a particular unit/building type within the strategy space and returns its location
 	*/
-	Vertex findNode(int race, Vertex node);
+	Vertex findNode(BWAPI::Race race, Vertex node);
 
 	//Returns the root of the particular races' strategy trees. This root represents the "center" of that races' strategy space and is located at (0,0,0)
 	VertexDescriptor& getTerranStrategyRoot();
@@ -88,6 +88,6 @@ private:
 	/*
 	Support function that returns the strategy space associated with the given race
 	*/
-	SCGraph& getTechTree(int race);
+	SCGraph& getTechTree(BWAPI::Race race);
 };
 

@@ -50,5 +50,30 @@ private:
 
 	//Path to the Zerg Strategy Files
 	static const std::string ZERG_STRATEGY_PATH;
+
+	//Strategy building support functions for readability
+	//Terran Strategies
+	Strategy buildBio();
+	Strategy buildRaxFe();
+	Strategy buildTwoFacto();
+	Strategy buildVultures();
+	Strategy buildAir();
+	Strategy buildDrop();
+
+	//Protoss Strategies
+	Strategy buildTwoGates();
+	Strategy buildFastDT();
+	Strategy buildTemplar();
+	Strategy buildSpeedzeal();
+	Strategy buildCorsair();
+	Strategy buildNony();
+	Strategy buildReaverDrop();
+
+	//Zerg Strategies
+	Strategy buildSpeedlings();
+	Strategy buildFastMutas();
+	Strategy buildMutas();
+	Strategy buildLurkers();
+	Strategy buildHydras();
 };
 

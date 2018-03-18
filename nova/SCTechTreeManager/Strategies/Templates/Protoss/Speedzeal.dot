@@ -1,0 +1,25 @@
+digraph G {
+Nexus [depth=0, penwidth=1, strength=1];
+Gateway [depth=1, penwidth=1, strength=1];
+Forge [depth=1, penwidth=1, strength=1];
+Probe [depth=1, penwidth=1, strength=1];
+"Cybernetics Core" [depth=2, penwidth=1, strength=1];
+"Shield Battery" [depth=2, penwidth=1, strength=1];
+"Photon Cannon" [depth=2, penwidth=1, strength=1];
+Zealot [depth=2, penwidth=1, strength=1];
+"Robotics Facility" [depth=3, penwidth=1, strength=1];
+Stargate [depth=3, penwidth=1, strength=1];
+"Citadel Of Adun" [depth=3, penwidth=1, strength=1];
+Dragoon [depth=3, penwidth=1, strength=1];
+Nexus->Gateway ;
+Nexus->Forge ;
+Nexus->Probe ;
+Gateway->"Cybernetics Core" ;
+Gateway->"Shield Battery" ;
+Forge->"Photon Cannon" ;
+Gateway->Zealot ;
+"Cybernetics Core"->"Robotics Facility" ;
+"Cybernetics Core"->Stargate ;
+"Cybernetics Core"->"Citadel Of Adun" ;
+"Cybernetics Core"->Dragoon ;
+}

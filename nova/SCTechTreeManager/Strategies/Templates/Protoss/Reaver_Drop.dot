@@ -1,0 +1,15 @@
+digraph G {
+Nexus [depth=0, penwidth=1, strength=1];
+Gateway [depth=1, penwidth=1, strength=1];
+"Cybernetics Core" [depth=2, penwidth=1, strength=1];
+"Robotics Facility" [depth=3, penwidth=1, strength=1];
+"Robotics Support Bay" [depth=4, penwidth=1, strength=1];
+Reaver [depth=4, penwidth=1, strength=1];
+Shuttle [depth=5, penwidth=1, strength=1];
+Nexus->Gateway ;
+Gateway->"Cybernetics Core" ;
+"Cybernetics Core"->"Robotics Facility" ;
+"Robotics Facility"->"Robotics Support Bay" ;
+"Robotics Facility"->Reaver ;
+"Robotics Support Bay"->Shuttle ;
+}

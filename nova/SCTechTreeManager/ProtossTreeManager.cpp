@@ -14,8 +14,8 @@ ProtossTreeManager::ProtossTreeManager() {
 	std::vector<Strategy> strats = reader.buildProtossStrategies();
 
 	for (unsigned int i = 0; i < strats.size(); i++) {
-		std::cout << "ZergTreeManager() - Adding Strategy: " << strats[i].name << std::endl;
-		strategies.addStrategy(0, strats[i]);
+		std::cout << "ProtossTreeManager() - Adding Strategy: " << strats[i].name << std::endl;
+		strategies.addStrategy(BWAPI::Races::Protoss, strats[i]);
 	}
 
 	strategies.printStrategySpaces();
@@ -162,9 +162,9 @@ void ProtossTreeManager::strengthenTree(UnitType type) {
 	}
 
 	//do so for all strategy trees
-	strategies.strengthenTree(0, type);
+	strategies.strengthenTree(BWAPI::Races::Protoss, type);
 }
 
 void ProtossTreeManager::identifyStrategy() {
-	strategies.identifyStrategy(0);
+	strategies.identifyStrategy(BWAPI::Races::Protoss);
 }

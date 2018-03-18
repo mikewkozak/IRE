@@ -1,0 +1,19 @@
+digraph G {
+Nexus [depth=0, penwidth=1, strength=1];
+Gateway [depth=1, penwidth=1, strength=1];
+Forge [depth=1, penwidth=1, strength=1];
+"Cybernetics Core" [depth=2, penwidth=1, strength=1];
+"Photon Cannon" [depth=2, penwidth=1, strength=1];
+"Citadel Of Adun" [depth=3, penwidth=1, strength=1];
+"Templar Archives" [depth=4, penwidth=1, strength=1];
+Archon [depth=5, penwidth=1, strength=1];
+"High Templar" [depth=5, penwidth=1, strength=1];
+Nexus->Gateway ;
+Nexus->Forge ;
+Gateway->"Cybernetics Core" ;
+Forge->"Photon Cannon" ;
+"Cybernetics Core"->"Citadel Of Adun" ;
+"Citadel Of Adun"->"Templar Archives" ;
+"Templar Archives"->Archon ;
+"Templar Archives"->"High Templar" ;
+}

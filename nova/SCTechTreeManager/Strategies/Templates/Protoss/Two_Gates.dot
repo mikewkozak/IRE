@@ -1,0 +1,7 @@
+digraph G {
+Nexus [depth=0, penwidth=1, strength=1];
+Gateway [depth=1, penwidth=1, strength=1];
+Zealot [depth=2, penwidth=1, strength=1];
+Nexus->Gateway ;
+Gateway->Zealot ;
+}
