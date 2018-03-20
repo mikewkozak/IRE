@@ -1,13 +1,13 @@
 digraph G {
-"Command Center" [depth=0, penwidth=1, strength=1];
-Barracks [depth=1, penwidth=1, strength=1];
-Factory [depth=2, penwidth=1, strength=1];
-"Machine Shop" [depth=3, penwidth=1, strength=1];
-"Siege Tank (Tank)" [depth=4, penwidth=1, strength=1];
-"Siege Tank (Siege)" [depth=4, penwidth=1, strength=1];
-"Command Center"->Barracks ;
-Barracks->Factory ;
-Factory->"Machine Shop" ;
-"Machine Shop"->"Siege Tank (Tank)" ;
-"Machine Shop"->"Siege Tank (Siege)" ;
+0 [depth=0, label="Command Center", penwidth=1, strength=1, x=0, y=0, z=0];
+1 [depth=1, label=Barracks, penwidth=1, strength=1, x=0, y=0, z=0];
+2 [depth=2, label=Factory, penwidth=1, strength=1, x=0, y=0, z=0];
+3 [depth=3, label="Machine Shop", penwidth=1, strength=1, x=0, y=0, z=0];
+4 [depth=4, label="Siege Tank (Tank)", penwidth=1, strength=1, x=0, y=0, z=0];
+5 [depth=4, label="Siege Tank (Siege)", penwidth=1, strength=1, x=0, y=0, z=0];
+0->1 ;
+1->2 ;
+2->3 ;
+3->4 ;
+3->5 ;
 }

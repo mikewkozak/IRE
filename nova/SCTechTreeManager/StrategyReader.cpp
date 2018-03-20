@@ -100,8 +100,6 @@ Strategy StrategyReader::buildBio() {
 	SCGraph bioStrategyGraph;
 
 	VertexDescriptor command_center = GraphUtils::addNode(bioStrategyGraph, BWAPI::UnitTypes::Terran_Command_Center, "Command Center", 1);
-	VertexDescriptor supply_depot = GraphUtils::addNode(bioStrategyGraph, BWAPI::UnitTypes::Terran_Supply_Depot, "Supply Depot", 1);
-	VertexDescriptor refinery = GraphUtils::addNode(bioStrategyGraph, BWAPI::UnitTypes::Terran_Refinery, "Refinery", 1);
 
 	//depth1
 	VertexDescriptor barracks = GraphUtils::addNode(bioStrategyGraph, BWAPI::UnitTypes::Terran_Barracks, "Barracks", 1);
@@ -145,8 +143,6 @@ Strategy StrategyReader::buildRaxFe() {
 	//root
 	SCGraph raxFeStrategyGraph;
 	VertexDescriptor cc2 = GraphUtils::addNode(raxFeStrategyGraph, BWAPI::UnitTypes::Terran_Command_Center, "Command Center", 1);
-	VertexDescriptor sd2 = GraphUtils::addNode(raxFeStrategyGraph, BWAPI::UnitTypes::Terran_Supply_Depot, "Supply Depot", 1);
-	VertexDescriptor r2 = GraphUtils::addNode(raxFeStrategyGraph, BWAPI::UnitTypes::Terran_Refinery, "Refinery", 1);
 
 	//depth1
 	VertexDescriptor scv2 = GraphUtils::addNode(raxFeStrategyGraph, BWAPI::UnitTypes::Terran_SCV, "SCV", 1);

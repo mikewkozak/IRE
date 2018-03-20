@@ -1,15 +1,15 @@
 digraph G {
-Hatchery [depth=0, penwidth=1, strength=1];
-Extractor [depth=2147483647, penwidth=1, strength=1];
-"Creep Colony" [depth=2147483647, penwidth=1, strength=1];
-"Spawning Pool" [depth=1, penwidth=1, strength=1];
-Lair [depth=2, penwidth=1, strength=1];
-Zergling [depth=2, penwidth=1, strength=1];
-Spire [depth=3, penwidth=1, strength=1];
-Mutalisk [depth=4, penwidth=1, strength=1];
-Hatchery->"Spawning Pool" ;
-"Spawning Pool"->Lair ;
-"Spawning Pool"->Zergling ;
-Lair->Spire ;
-Spire->Mutalisk ;
+0 [depth=0, label=Hatchery, penwidth=1, strength=1, x=0, y=0, z=0];
+1 [depth=2147483647, label=Extractor, penwidth=1, strength=1, x=0, y=0, z=0];
+2 [depth=2147483647, label="Creep Colony", penwidth=1, strength=1, x=0, y=0, z=0];
+3 [depth=1, label="Spawning Pool", penwidth=1, strength=1, x=0, y=0, z=0];
+4 [depth=2, label=Lair, penwidth=1, strength=1, x=0, y=0, z=0];
+5 [depth=2, label=Zergling, penwidth=1, strength=1, x=0, y=0, z=0];
+6 [depth=3, label=Spire, penwidth=1, strength=1, x=0, y=0, z=0];
+7 [depth=4, label=Mutalisk, penwidth=1, strength=1, x=0, y=0, z=0];
+0->3 ;
+3->4 ;
+3->5 ;
+4->6 ;
+6->7 ;
 }

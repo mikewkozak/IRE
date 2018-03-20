@@ -1,9 +1,9 @@
 digraph G {
-"Command Center" [depth=0, penwidth=1, strength=1];
-Barracks [depth=1, penwidth=1, strength=1];
-Factory [depth=2, penwidth=1, strength=1];
-Vulture [depth=3, penwidth=1, strength=1];
-"Command Center"->Barracks ;
-Barracks->Factory ;
-Factory->Vulture ;
+0 [depth=0, label="Command Center", penwidth=1, strength=1, x=0, y=0, z=0];
+1 [depth=1, label=Barracks, penwidth=1, strength=1, x=0, y=0, z=0];
+2 [depth=2, label=Factory, penwidth=1, strength=1, x=0, y=0, z=0];
+3 [depth=3, label=Vulture, penwidth=1, strength=1, x=0, y=0, z=0];
+0->1 ;
+1->2 ;
+2->3 ;
 }

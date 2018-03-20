@@ -33,7 +33,10 @@ struct Vertex {
 	BWAPI::UnitType node;//type of SC object
 	std::string name;//name for display purposes
 	int strength;//The number of times it has been "seen" by IRE
-	bg::model::point<double, 3, bg::cs::cartesian> location;//The location in "Strategy Space" representing the relative intensity of this object in terms of strategy
+	//The location in "Strategy Space" representing the relative intensity of this object in terms of strategy
+	double air_aa_pos;
+	double ground_ag_pos;
+	double aggressive_defensive_pos;
 	int depth;//The depth from root. Required for generating the location and difficult to obtain on the fly because of boost graphs not being trees
 };
 
@@ -123,9 +126,9 @@ public:
 		graph[node].depth = 0;
 
 		//Set the initial location
-		graph[node].location.set<AIR_AA_AXIS>(0);
-		graph[node].location.set<GROUND_AG_AXIS>(0);
-		graph[node].location.set<AGGRESSIVE_DEFENSIVE_AXIS>(0);
+		graph[node].air_aa_pos = 0;
+		graph[node].ground_ag_pos = 0;
+		graph[node].aggressive_defensive_pos = 0;
 
 		//return the vertex created
 		return node;
@@ -139,11 +142,14 @@ public:
 
 		//Write out the graph to a standard format for visualization through the use of dynamic properties
 		boost::dynamic_properties dp;
-		dp.property("node_id", get(&Vertex::name, tree));
+		dp.property("node_id", get(boost::vertex_index, tree));
+		dp.property("label", get(&Vertex::name, tree));
 		dp.property("strength", get(&Vertex::strength, tree));
 		dp.property("penwidth", get(&Vertex::strength, tree));
 		dp.property("depth", get(&Vertex::depth, tree));
-		//dp.property("pos", get(&Vertex::location, tree));
+		dp.property("x", get(&Vertex::air_aa_pos, tree));
+		dp.property("y", get(&Vertex::ground_ag_pos, tree));
+		dp.property("z", get(&Vertex::aggressive_defensive_pos, tree));
 
 		//Also print to command line if the option is set to true
 		if (printToConsole) {

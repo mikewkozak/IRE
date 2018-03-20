@@ -49,13 +49,13 @@ void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 			//scaled to be the same value as the intensity, with all other nodes linearly scaled based on percent depth
 
 			double xpos = (strat.techTree[*it.first].depth / strat.maxDepth) * /*cur_child / max_children*/ strat.air_aa_intensity;
-			strat.techTree[*it.first].location.set<StrategySpace::AIR_AA_AXIS>(xpos);
+			strat.techTree[*it.first].air_aa_pos = xpos;
 
 			double ypos = (strat.techTree[*it.first].depth / strat.maxDepth) * strat.ground_ag_intensity;
-			strat.techTree[*it.first].location.set<StrategySpace::GROUND_AG_AXIS>(ypos);
+			strat.techTree[*it.first].ground_ag_pos = ypos;
 
 			double zpos = strat.aggressive_defensive_intensity;
-			strat.techTree[*it.first].location.set<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>(zpos);
+			strat.techTree[*it.first].aggressive_defensive_pos = zpos;
 
 			std::cout << "Setting  " << strat.techTree[*it.first].name << " with depth " << strat.techTree[*it.first].depth 
 				<< " to Position to (" << xpos << "," << ypos << "," << zpos << ")\n";
@@ -76,6 +76,8 @@ void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 	copy_graph(strat.techTree, techTree, vertex_index_map(propmapIndex));
 	//techTree = strat.techTree;
 }
+
+
 
 void StrategySpace::strengthenTree(BWAPI::Race race, BWAPI::UnitType type) {
 	std::cout << "strengthenTree()\n";// -search for match to " << type.getName() << std::endl;
@@ -169,9 +171,9 @@ void StrategySpace::identifyStrategy(BWAPI::Race race) {
 		}
 		else {
 			//Get the intensities of the strategy along the axes of the strategy space
-			double airAggressiveness = strategyNode.location.get<StrategySpace::AIR_AA_AXIS>();
-			double groundAggressiveness = strategyNode.location.get<StrategySpace::GROUND_AG_AXIS>();
-			double overallAggressiveness = strategyNode.location.get<StrategySpace::AGGRESSIVE_DEFENSIVE_AXIS>();
+			double airAggressiveness = strategyNode.air_aa_pos;
+			double groundAggressiveness = strategyNode.ground_ag_pos;
+			double overallAggressiveness = strategyNode.aggressive_defensive_pos;
 
 			//Add them to the running total
 			proposedAirAggressiveness += airAggressiveness;
