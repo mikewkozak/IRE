@@ -1,20 +1,20 @@
 digraph G {
-0 [depth=0, label="Command Center", penwidth=22, strength=22, x=0, y=0, z=0];
+0 [depth=0, label="Command Center", penwidth=2, strength=2, x=0, y=0, z=0];
 1 [depth=2147483647, label="Supply Depot", penwidth=1, strength=1, x=0, y=0, z=0];
 2 [depth=2147483647, label=Refinery, penwidth=1, strength=1, x=0, y=0, z=0];
-3 [depth=1, label=Barracks, penwidth=10, strength=10, x=0, y=0, z=0];
+3 [depth=1, label=Barracks, penwidth=2, strength=2, x=0, y=0, z=0];
 4 [depth=1, label="Engineering Bay", penwidth=1, strength=1, x=0, y=0, z=0];
-5 [depth=1, label=SCV, penwidth=13, strength=13, x=0, y=0, z=0];
-6 [depth=2, label=Factory, penwidth=3, strength=3, x=0, y=0, z=0];
+5 [depth=1, label=SCV, penwidth=1, strength=1, x=0, y=0, z=0];
+6 [depth=2, label=Factory, penwidth=2, strength=2, x=0, y=0, z=0];
 7 [depth=2, label=Bunker, penwidth=1, strength=1, x=0, y=0, z=0];
 8 [depth=2, label=Academy, penwidth=1, strength=1, x=0, y=0, z=0];
 9 [depth=2, label="Missile Turret", penwidth=1, strength=1, x=0, y=0, z=0];
-10 [depth=2, label=Marine, penwidth=7, strength=7, x=0, y=0, z=0];
+10 [depth=2, label=Marine, penwidth=1, strength=1, x=0, y=0, z=0];
 11 [depth=3, label="Comsat Station", penwidth=1, strength=1, x=0, y=0, z=0];
 12 [depth=3, label=Starport, penwidth=1, strength=1, x=0, y=0, z=0];
 13 [depth=3, label=Armory, penwidth=1, strength=1, x=0, y=0, z=0];
-14 [depth=3, label="Machine Shop", penwidth=2, strength=2, x=0, y=0, z=0];
-15 [depth=3, label=Vulture, penwidth=1, strength=1, x=0, y=0, z=0];
+14 [depth=3, label="Machine Shop", penwidth=1, strength=1, x=0, y=0, z=0];
+15 [depth=3, label=Vulture, penwidth=2, strength=2, x=0, y=0, z=0];
 16 [depth=3, label=Firebat, penwidth=1, strength=1, x=0, y=0, z=0];
 17 [depth=3, label=Medic, penwidth=1, strength=1, x=0, y=0, z=0];
 18 [depth=4, label="Control Tower", penwidth=1, strength=1, x=0, y=0, z=0];

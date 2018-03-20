@@ -160,8 +160,12 @@ void StrategySpace::identifyStrategy(BWAPI::Race race) {
 		//We want to ignore all the "common" nodes
 		if ((strategyNode.node == BWAPI::UnitTypes::Terran_Command_Center) ||
 			(strategyNode.node == BWAPI::UnitTypes::Protoss_Nexus) ||
-			(strategyNode.node == BWAPI::UnitTypes::Zerg_Hatchery) ) {
-			count++;
+			(strategyNode.node == BWAPI::UnitTypes::Zerg_Hatchery) ||
+			
+			(strategyNode.node == BWAPI::UnitTypes::Terran_SCV) ||
+			(strategyNode.node == BWAPI::UnitTypes::Protoss_Probe) ||
+			(strategyNode.node == BWAPI::UnitTypes::Zerg_Drone)
+			) {
 			continue;
 		}
 
