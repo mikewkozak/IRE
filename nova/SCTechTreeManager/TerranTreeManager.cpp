@@ -24,18 +24,15 @@ TerranTreeManager::TerranTreeManager() {
 TerranTreeManager::~TerranTreeManager() {}
 
 void TerranTreeManager::buildTree() {
-	printf("buildTree()\n");
+	printf("buildTree() - Building Terran Tech Tree\n");
 
 	// Populates the graph.
 	//root
-	printf("buildTree() - creating root\n");
-
 	VertexDescriptor command_center = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Command_Center, "Command Center", 1);
 	VertexDescriptor supply_depot = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Supply_Depot, "Supply Depot", 1);
 	VertexDescriptor refinery = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Refinery, "Refinery", 1);
 
 	//depth1
-	printf("buildTree() - creating depth1\n");
 	VertexDescriptor barracks = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Barracks, "Barracks", 1);
 	boost::add_edge(command_center, barracks, 1, techTree);
 
@@ -46,7 +43,6 @@ void TerranTreeManager::buildTree() {
 	boost::add_edge(command_center, scv, 1, techTree);
 
 	//depth2
-	printf("buildTree() - creating depth2\n");
 	VertexDescriptor factory = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Factory, "Factory", 1);
 	VertexDescriptor bunker = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Bunker, "Bunker", 1);
 	VertexDescriptor academy = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Academy, "Academy", 1);
@@ -61,7 +57,6 @@ void TerranTreeManager::buildTree() {
 	boost::add_edge(barracks, marine, 1, techTree);
 
 	//depth3
-	printf("buildTree() - creating depth3\n");
 	VertexDescriptor comsat_station = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Comsat_Station, "Comsat Station", 1);
 	boost::add_edge(academy, comsat_station, 1, techTree);
 
@@ -81,7 +76,6 @@ void TerranTreeManager::buildTree() {
 	boost::add_edge(academy, medic, 1, techTree);
 
 	//depth 4
-	printf("buildTree() - creating depth4\n");
 	VertexDescriptor control_tower = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Control_Tower, "Control Tower", 1);
 	VertexDescriptor science_facility = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Science_Facility, "Science Facility", 1);
 	boost::add_edge(starport, control_tower, 1, techTree);
@@ -108,7 +102,6 @@ void TerranTreeManager::buildTree() {
 	boost::add_edge(control_tower, valkyrie, 1, techTree);
 
 	//depth 5
-	printf("buildTree() - creating depth5\n");
 	VertexDescriptor physics_lab = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Physics_Lab, "Physics Lab", 1);
 	VertexDescriptor covert_ops = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Covert_Ops, "Covert Ops", 1);
 	boost::add_edge(science_facility, physics_lab, 1, techTree);
@@ -118,7 +111,6 @@ void TerranTreeManager::buildTree() {
 	boost::add_edge(physics_lab, battlecruiser, 1, techTree);
 
 	//depth 6
-	printf("buildTree() - creating depth6\n");
 	VertexDescriptor nuclear_silo = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Terran_Nuclear_Silo, "Nuclear Silo", 1);
 	boost::add_edge(covert_ops, nuclear_silo, 1, techTree);
 

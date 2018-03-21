@@ -138,7 +138,7 @@ public:
 	Prints the tree to a DOT file and optionally to the command line
 	*/
 	static void printTree(SCGraph tree, std::string filename, bool printToConsole) {
-		printf("printTree()\n");
+		//printf("printTree()\n");
 
 		//Write out the graph to a standard format for visualization through the use of dynamic properties
 		boost::dynamic_properties dp;

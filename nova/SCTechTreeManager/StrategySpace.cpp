@@ -29,13 +29,12 @@ VertexDescriptor& StrategySpace::getZergStrategyRoot() {
 }
 
 void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
-	printf("addStrategy()");
-
-	std::cout << " Adding Strategy " << strat.name << " of depth " << strat.maxDepth
+	std::cout << "StrategySpace::addStrategy() - Adding Strategy " << strat.name << " of depth " << strat.maxDepth
 		<< " with intensities: "
 		<< strat.air_aa_intensity << " "
 		<< strat.ground_ag_intensity << " "
 		<< strat.aggressive_defensive_intensity << std::endl;
+
 
 	//add strategy to the correct race graph
 	SCGraph& techTree = getTechTree(race);
@@ -57,8 +56,8 @@ void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 			double zpos = strat.aggressive_defensive_intensity;
 			strat.techTree[*it.first].aggressive_defensive_pos = zpos;
 
-			std::cout << "Setting  " << strat.techTree[*it.first].name << " with depth " << strat.techTree[*it.first].depth 
-				<< " to Position to (" << xpos << "," << ypos << "," << zpos << ")\n";
+			//std::cout << "Setting  " << strat.techTree[*it.first].name << " with depth " << strat.techTree[*it.first].depth 
+				//<< " to Position to (" << xpos << "," << ypos << "," << zpos << ")\n";
 		}
 	}
 
@@ -80,7 +79,7 @@ void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 
 
 void StrategySpace::strengthenTree(BWAPI::Race race, BWAPI::UnitType type) {
-	std::cout << "strengthenTree()\n";// -search for match to " << type.getName() << std::endl;
+	std::cout << "strengthenTree() - Strengthing tree for observed UnitType " << type.getID() << std::endl;
 
 	//add strategy to the correct race graph
 	SCGraph& techTree = getTechTree(race);
@@ -104,7 +103,7 @@ void StrategySpace::strengthenTree(BWAPI::Race race, BWAPI::UnitType type) {
 			while (rbegin != rend) {
 				//for (boost::tie(rbegin, rend) = boost::adjacent_vertices(*it.first, rgraph); rbegin != rend; ++rbegin) {
 
-				std::cout << "Strengthening " << techTree[*rbegin].name << std::endl;
+				//std::cout << "Strengthening " << techTree[*rbegin].name << std::endl;
 				techTree[*rbegin].strength++;
 				boost::tie(rbegin, rend) = boost::adjacent_vertices(*rbegin, rgraph);
 
@@ -222,15 +221,15 @@ SCGraph& StrategySpace::getTechTree(BWAPI::Race race) {
 	//std::cout<< "StrategySpace::getTechTree() - Getting tech tree for " << race.c_str() << std::endl;
 
 	if (race == BWAPI::Races::Terran) {
-		printf("Retrieving TERRAN tech tree\n");
+		//printf("Retrieving TERRAN tech tree\n");
 		return terranStrategySpace;
 	}
 	else if (race == BWAPI::Races::Protoss) {
-		printf("Retrieving PROTOSS tech tree\n");
+		//printf("Retrieving PROTOSS tech tree\n");
 		return protossStrategySpace;
 	}
 	else if (race == BWAPI::Races::Zerg) {
-		printf("Retrieving ZERG tech tree\n");
+		//printf("Retrieving ZERG tech tree\n");
 		return zergStrategySpace;
 	}
 	else {

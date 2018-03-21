@@ -27,19 +27,16 @@ ZergTreeManager::~ZergTreeManager(){}
 
 
 void ZergTreeManager::buildTree() {
-	printf("buildTree()\n");
+	printf("buildTree() - Building Zerg Tech Tree\n");
 
 	// Populates the graph.
 	//root
-	printf("buildTree() - creating root\n");
-
 	VertexDescriptor hatchery = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hatchery, "Hatchery", 1);
 	VertexDescriptor extractor = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Extractor, "Extractor", 1);
 	VertexDescriptor creep_colony = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Creep_Colony, "Creep Colony", 1);
 
 
 	//depth1
-	printf("buildTree() - creating depth1\n");
 	VertexDescriptor spawning_pool = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spawning_Pool, "Spawning Pool", 1);
 	VertexDescriptor evolution_chamber = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Evolution_Chamber, "Evolution Chamber", 1);
 	boost::add_edge(hatchery, spawning_pool, 1, techTree);
@@ -55,7 +52,6 @@ void ZergTreeManager::buildTree() {
 	
 
 	//depth2
-	printf("buildTree() - creating depth2\n");
 	VertexDescriptor spore_colony = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spore_Colony, "Spore Colony", 1);
 	boost::add_edge(evolution_chamber, spore_colony, 1, techTree);
 
@@ -71,7 +67,6 @@ void ZergTreeManager::buildTree() {
 	
 
 	//depth3
-	printf("buildTree() - creating depth3\n");
 	VertexDescriptor queens_nest = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Queens_Nest, "Queen's Nest", 1);
 	VertexDescriptor spire = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Spire, "Spire", 1);
 	boost::add_edge(lair, queens_nest, 1, techTree);
@@ -81,7 +76,6 @@ void ZergTreeManager::buildTree() {
 	boost::add_edge(hydralisk_den, hydralisk, 1, techTree);
 
 	//depth 4
-	printf("buildTree() - creating depth4\n");
 	VertexDescriptor hive = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Hive, "Hive", 1);
 	VertexDescriptor infested_command_center = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Infested_Command_Center, "Infested Command Center", 1);
 	boost::add_edge(queens_nest, hive, 1, techTree);
@@ -101,7 +95,6 @@ void ZergTreeManager::buildTree() {
 
 
 	//depth 5
-	printf("buildTree() - creating depth5\n");
 	VertexDescriptor ultralisk_cavern = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Ultralisk_Cavern, "Ultralisk Cavern", 1);
 	VertexDescriptor greater_spire = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Greater_Spire, "Greater Spire", 1);
 	VertexDescriptor nydus_canal = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Zerg_Nydus_Canal, "Nydus Canal", 1);

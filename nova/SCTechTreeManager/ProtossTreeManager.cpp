@@ -26,19 +26,16 @@ ProtossTreeManager::~ProtossTreeManager(){}
 
 
 void ProtossTreeManager::buildTree() {
-	printf("buildTree()\n");
+	printf("buildTree() - Building Protoss Tech Tree\n");
 
 	// Populates the graph.
 	//root
-	printf("buildTree() - creating root\n");
-
 	VertexDescriptor nexus = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Nexus, "Nexus", 1);
 	VertexDescriptor pylon = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Pylon, "Pylon", 1);
 	VertexDescriptor assimilator = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Assimilator, "Assimilator", 1);
 
 
 	//depth1
-	printf("buildTree() - creating depth1\n");
 	VertexDescriptor gateway = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Gateway, "Gateway", 1);
 	VertexDescriptor forge = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Forge, "Forge", 1);
 	boost::add_edge(nexus, gateway, 1, techTree);
@@ -48,7 +45,6 @@ void ProtossTreeManager::buildTree() {
 	boost::add_edge(nexus, probe, 1, techTree);
 
 	//depth2
-	printf("buildTree() - creating depth2\n");
 	VertexDescriptor cybernetics_core = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Cybernetics_Core, "Cybernetics Core", 1);
 	VertexDescriptor shield_battery = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Shield_Battery, "Shield Battery", 1);
 	boost::add_edge(gateway, cybernetics_core, 1, techTree);
@@ -62,7 +58,6 @@ void ProtossTreeManager::buildTree() {
 	boost::add_edge(gateway, zealot, 1, techTree);
 
 	//depth3
-	printf("buildTree() - creating depth3\n");
 	VertexDescriptor robotics_facility = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Robotics_Facility, "Robotics Facility", 1);
 	VertexDescriptor stargate = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Stargate, "Stargate", 1);
 	VertexDescriptor citadel_of_adun = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Citadel_of_Adun, "Citadel Of Adun", 1);
@@ -74,7 +69,6 @@ void ProtossTreeManager::buildTree() {
 	boost::add_edge(cybernetics_core, dragoon, 1, techTree);
 
 	//depth 4
-	printf("buildTree() - creating depth4\n");
 	VertexDescriptor robotics_support_bay = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Robotics_Support_Bay, "Robotics Support Bay", 1);
 	VertexDescriptor observatory = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Observatory, "Observatory", 1);
 	boost::add_edge(robotics_facility, robotics_support_bay, 1, techTree);
@@ -96,7 +90,6 @@ void ProtossTreeManager::buildTree() {
 	boost::add_edge(stargate, scout, 1, techTree);
 
 	//depth 5
-	printf("buildTree() - creating depth5\n");
 	VertexDescriptor arbiter_tribunal = GraphUtils::addNode(techTree, BWAPI::UnitTypes::Protoss_Arbiter_Tribunal, "Arbiter Tribunal", 1);
 	boost::add_edge(templar_archives, arbiter_tribunal, 1, techTree);
 
