@@ -94,6 +94,9 @@ void StrategySpace::strengthenTree(BWAPI::Race race, BWAPI::UnitType type) {
 			//Increment the strength of the node for use in detecting strategies
 			techTree[*it.first].strength++;
 
+			//Originally I had the code below included to walk up the tree and strengthen the whole strategy as part of an observation.
+			//I realize this isn't properly in the spirit of VonMises which uses points as observations 
+			/*
 			//Once you've found it, you need to reverse the directed to walk it to the root in boost since the graph is directed
 			Rgraph rgraph(techTree);
 			Rgraph::adjacency_iterator rbegin, rend;
@@ -108,14 +111,13 @@ void StrategySpace::strengthenTree(BWAPI::Race race, BWAPI::UnitType type) {
 				boost::tie(rbegin, rend) = boost::adjacent_vertices(*rbegin, rgraph);
 
 				//Strengthen the edges for visualization purposes
-				/*
-				std::pair<Vertex,Vertex> ed = boost::edge(*it.first, *rbegin, techTree);
-				int weight = get(boost::edge_weight, techTree, ed.first);
-				int weightToAdd = 1;
-				boost::put(boost::edge_weight, techTree, ed.first, weight + weightToAdd);
-				*/
+				//std::pair<Vertex,Vertex> ed = boost::edge(*it.first, *rbegin, techTree);
+				//int weight = get(boost::edge_weight, techTree, ed.first);
+				//int weightToAdd = 1;
+				//boost::put(boost::edge_weight, techTree, ed.first, weight + weightToAdd);
 			}
 			std::cout << std::endl;
+			*/
 		}
 
 	}
