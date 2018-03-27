@@ -47,13 +47,13 @@ void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 			//Set the position of the node in strategy space as a factor of depth and intensities. The lowest leaf in the tree will be
 			//scaled to be the same value as the intensity, with all other nodes linearly scaled based on percent depth
 
-			double xpos = (strat.techTree[*it.first].depth / strat.maxDepth) * /*cur_child / max_children*/ strat.air_aa_intensity;
+			double xpos = (strat.techTree[*it.first].depth / strat.maxDepth) * strat.air_aa_intensity;
 			strat.techTree[*it.first].air_aa_pos = xpos;
 
 			double ypos = (strat.techTree[*it.first].depth / strat.maxDepth) * strat.ground_ag_intensity;
 			strat.techTree[*it.first].ground_ag_pos = ypos;
 
-			double zpos = strat.aggressive_defensive_intensity;
+			double zpos = (strat.techTree[*it.first].depth / strat.maxDepth) * strat.aggressive_defensive_intensity;
 			strat.techTree[*it.first].aggressive_defensive_pos = zpos;
 
 			//std::cout << "Setting  " << strat.techTree[*it.first].name << " with depth " << strat.techTree[*it.first].depth 
