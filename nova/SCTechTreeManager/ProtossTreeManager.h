@@ -2,18 +2,13 @@
 ProtossTreeManager.h
 Class representing the full tech tree for the Protoss Race.
 */
-#include <list>
-
-//Graph structure and strategy axes
-#include "StrategySpace.h"
-#include "StrategyReader.h"
-#include "GraphUtils.h"
+#include "ITreeManager.h"
 
 #pragma once
 /*
 Class representing the full tech tree for the Protoss Race.
 */
-class ProtossTreeManager
+class ProtossTreeManager : public ITreeManager
 {
 public:
 	ProtossTreeManager();
@@ -31,15 +26,7 @@ public:
 	*/
 	void identifyStrategy();
 
-private:
-	// The Graph object
-	SCGraph techTree;
-
-
-	//Handles to strategy space and a reader for reading in the strategies
-	StrategySpace strategies;
-	StrategyReader reader;
-
+protected:
 	void buildTree();
 };
 

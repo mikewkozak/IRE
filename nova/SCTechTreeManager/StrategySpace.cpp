@@ -156,7 +156,7 @@ void StrategySpace::identifyStrategy(BWAPI::Race race) {
 	for (iter = vertices.begin(); (iter != vertices.end() && count < NUM_STRATEGY_NODES); iter++) {
 
 		//Find the node in the tree that matches this vertex
-		Vertex strategyNode = findNode(race, (*iter));
+		Vertex strategyNode = (*iter);
 
 		//We want to ignore all the "common" nodes
 		if ((strategyNode.node == BWAPI::UnitTypes::Terran_Command_Center) ||

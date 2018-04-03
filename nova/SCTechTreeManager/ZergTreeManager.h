@@ -2,23 +2,17 @@
 ZergTreeManager.h
 Class representing the full tech tree for the Zerg Race.
 */
-#include <list>
-
-//Graph structure and strategy axes
-#include "StrategySpace.h"
-#include "StrategyReader.h"
-#include "GraphUtils.h"
+#include "ITreeManager.h"
 
 #pragma once
 /*
 Class representing the full tech tree for the Zerg Race.
 */
-class ZergTreeManager
+class ZergTreeManager : public ITreeManager
 {
 public:
 	ZergTreeManager();
 	~ZergTreeManager();
-
 
 	/*
 	Given a unit, building, or upgrade, traverse up the tree to the root and strengthen every edge along the way
@@ -32,15 +26,7 @@ public:
 	*/
 	void identifyStrategy();
 
-private:
-	// The Graph object
-	SCGraph techTree;
-
-
-	//Handles to strategy space and a reader for reading in the strategies
-	StrategySpace strategies;
-	StrategyReader reader;
-
+protected:
 	void buildTree();
 };
 

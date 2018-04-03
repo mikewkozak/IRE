@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GraphUtils.h" />
+    <ClInclude Include="ITreeManager.h" />
     <ClInclude Include="ProtossTreeManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />

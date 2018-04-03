@@ -2,20 +2,13 @@
 TerranTreeManager.h
 Class representing the full tech tree for the Terran Race.
 */
-#include <list>
-
-//Graph structure and strategy axes
-#include "StrategySpace.h"
-#include "StrategyReader.h"
-#include "GraphUtils.h"
-
-
+#include "ITreeManager.h"
 
 #pragma once
 /*
 Class representing the full tech tree for the Terran Race.
 */
-class TerranTreeManager
+class TerranTreeManager : public ITreeManager
 {
 public:
 	TerranTreeManager();
@@ -33,15 +26,7 @@ public:
 	*/
 	void identifyStrategy();
 
-private:
-	// The Graph object
-	SCGraph techTree;
-
-
-	//Handles to strategy space and a reader for reading in the strategies
-	StrategySpace strategies;
-	StrategyReader reader;
-
+protected:
 	void buildTree();
 };
 
