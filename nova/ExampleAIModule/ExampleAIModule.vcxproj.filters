@@ -369,4 +369,7 @@
   <ItemGroup>
     <ResourceCompile Include="Nova.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>
