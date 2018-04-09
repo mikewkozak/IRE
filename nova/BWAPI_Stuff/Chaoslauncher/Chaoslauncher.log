@@ -1,66 +1,54 @@
-1/29/2018 10:16:34 PM 9828 Logging started
-1/29/2018 10:16:34 PM 9828 Begin Startup
-1/29/2018 10:16:34 PM 9828 Chaosauncher 0.5.4.4 on NT 6.2.9200  at C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Chaoslauncher.exe
-1/29/2018 10:16:34 PM 9828 Load Settings
-1/29/2018 10:16:34 PM 9828 GamePath: C:\Starcraft\
-1/29/2018 10:16:34 PM 9828 Load Plugins
-1/29/2018 10:16:34 PM 9828 AdvLoaderPluginPath: \Plugins\
-1/29/2018 10:16:34 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjector.bwl
-1/29/2018 10:16:35 PM 9828 Plugin loaded BWAPI Injector (1.16.1) RELEASE
-1/29/2018 10:16:35 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjectord.bwl
-1/29/2018 10:16:35 PM 9828 Unloading Plugin BWAPI_ChaosLauncherInjectord
-1/29/2018 10:16:35 PM 9828 Exception at: FindInDirectory BWAPI_ChaosLauncherInjectord.bwl class: Exception msg: Could not load Plugin "C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjectord.bwl"
+4/8/2018 4:54:53 PM 16340 Logging started
+4/8/2018 4:54:53 PM 16340 Begin Startup
+4/8/2018 4:54:53 PM 16340 Chaosauncher 0.5.4.4 on NT 6.2.9200  at C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Chaoslauncher.exe
+4/8/2018 4:54:53 PM 16340 Load Settings
+4/8/2018 4:54:53 PM 16340 GamePath: C:\Starcraft\
+4/8/2018 4:54:53 PM 16340 Load Plugins
+4/8/2018 4:54:53 PM 16340 AdvLoaderPluginPath: \Plugins\
+4/8/2018 4:54:53 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjector.bwl
+4/8/2018 4:54:53 PM 16340 Plugin loaded BWAPI Injector (1.16.1) RELEASE
+4/8/2018 4:54:53 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjectord.bwl
+4/8/2018 4:54:53 PM 16340 Unloading Plugin BWAPI_ChaosLauncherInjectord
+4/8/2018 4:54:53 PM 16340 Exception at: FindInDirectory BWAPI_ChaosLauncherInjectord.bwl class: Exception msg: Could not load Plugin "C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\BWAPI_ChaosLauncherInjectord.bwl"
 Error: The application has failed to start because its side-by-side configuration is incorrect. Please see the application event log or use the command-line sxstrace.exe tool for more detail.
 (14001)
-1/29/2018 10:16:40 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\iccscbn.icc
-1/29/2018 10:16:42 PM 9828 Plugin loaded ICCup
-1/29/2018 10:16:42 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\APMAlert.bwl
-1/29/2018 10:16:42 PM 9828 Plugin loaded APMAlert (1.16.1)
-1/29/2018 10:16:42 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\Chaosplugin.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded Chaosplugin for 1.16.1
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\icctv.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded ICCup TV Streamer
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\icctvp.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded ICCup TV Player
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\LatencyChanger.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded LatencyChanger for 1.16.1
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\repfix.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded RepFix
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\RWAPlayer.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded RWAPlayer (1.16.1)
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\RWARecorder.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded RWARecorder (1.16.1)
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\Stormplugin.bwl
-1/29/2018 10:16:43 PM 9828 Plugin loaded Stormplugin for 1.16.1
-1/29/2018 10:16:43 PM 9828 Loading BWL4-Plugin C:\workspace\Thesis\nova\BWAPI_Stuff\Chaoslauncher\Plugins\wmode.bwl
-1/29/2018 10:16:44 PM 9828 Plugin loaded W-MODE 1.02
-1/29/2018 10:16:44 PM 9828 Load Tools
-1/29/2018 10:16:44 PM 9828 Init GUI
-1/29/2018 10:16:44 PM 9828 Get Starcraftversions
-1/29/2018 10:16:44 PM 9828 Init complete
-1/29/2018 10:17:00 PM 9828 Startbutton
-1/29/2018 10:17:00 PM 9828 Starting Game Starcraft 1.16.1 C:\Starcraft\StarCraft.exe
-1/29/2018 10:17:00 PM 9828 BWAPI Injector (1.16.1) RELEASE Version  Compatible
-1/29/2018 10:17:00 PM 9828 Obtained DebugPrivilege
-1/29/2018 10:17:00 PM 9828 CreateProcess
-1/29/2018 10:17:00 PM 9828 Call ScSuspended for all active Plugins
-1/29/2018 10:17:00 PM 9828 ApplyPatchSuspended for BWAPI Injector (1.16.1) RELEASE
-1/29/2018 10:17:00 PM 9828 ResumeThread
-1/29/2018 10:17:00 PM 9828 WaitForInputIdle
-1/29/2018 10:17:00 PM 9828 Call ScWindowCreated for all active Plugins
-1/29/2018 10:17:00 PM 9828 ApplyPatch for BWAPI Injector (1.16.1) RELEASE
-1/29/2018 10:17:00 PM 9828 Starting Starcraft completed
-1/29/2018 10:17:25 PM 9828 Finishing
-1/29/2018 10:17:25 PM 9828 Unloading Plugin BWAPI Injector (1.16.1) RELEASE
-1/29/2018 10:17:25 PM 9828 Unloading Plugin ICCup
-1/29/2018 10:17:25 PM 9828 Unloading Plugin APMAlert (1.16.1)
-1/29/2018 10:17:25 PM 9828 Unloading Plugin Chaosplugin for 1.16.1
-1/29/2018 10:17:25 PM 9828 Unloading Plugin ICCup TV Streamer
-1/29/2018 10:17:25 PM 9828 Unloading Plugin ICCup TV Player
-1/29/2018 10:17:25 PM 9828 Unloading Plugin LatencyChanger for 1.16.1
-1/29/2018 10:17:25 PM 9828 Unloading Plugin RepFix
-1/29/2018 10:17:25 PM 9828 Unloading Plugin RWAPlayer (1.16.1)
-1/29/2018 10:17:25 PM 9828 Unloading Plugin RWARecorder (1.16.1)
-1/29/2018 10:17:25 PM 9828 Unloading Plugin Stormplugin for 1.16.1
-1/29/2018 10:17:25 PM 9828 Unloading Plugin W-MODE 1.02
-1/29/2018 10:17:25 PM 9828 Logging ended
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\iccscbn.icc
+4/8/2018 4:54:54 PM 16340 Plugin loaded ICCup
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\APMAlert.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded APMAlert (1.16.1)
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\Chaosplugin.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded Chaosplugin for 1.16.1
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\icctv.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded ICCup TV Streamer
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\icctvp.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded ICCup TV Player
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\LatencyChanger.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded LatencyChanger for 1.16.1
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\repfix.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded RepFix
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\RWAPlayer.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded RWAPlayer (1.16.1)
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\RWARecorder.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded RWARecorder (1.16.1)
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\Stormplugin.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded Stormplugin for 1.16.1
+4/8/2018 4:54:54 PM 16340 Loading BWL4-Plugin C:\workspace\IRE\nova\BWAPI_Stuff\Chaoslauncher\Plugins\wmode.bwl
+4/8/2018 4:54:54 PM 16340 Plugin loaded W-MODE 1.02
+4/8/2018 4:54:54 PM 16340 Load Tools
+4/8/2018 4:54:54 PM 16340 Init GUI
+4/8/2018 4:54:54 PM 16340 Get Starcraftversions
+4/8/2018 4:54:54 PM 16340 Init complete
+4/8/2018 4:54:56 PM 16340 Finishing
+4/8/2018 4:54:56 PM 16340 Unloading Plugin BWAPI Injector (1.16.1) RELEASE
+4/8/2018 4:54:56 PM 16340 Unloading Plugin ICCup
+4/8/2018 4:54:56 PM 16340 Unloading Plugin APMAlert (1.16.1)
+4/8/2018 4:54:56 PM 16340 Unloading Plugin Chaosplugin for 1.16.1
+4/8/2018 4:54:56 PM 16340 Unloading Plugin ICCup TV Streamer
+4/8/2018 4:54:56 PM 16340 Unloading Plugin ICCup TV Player
+4/8/2018 4:54:56 PM 16340 Unloading Plugin LatencyChanger for 1.16.1
+4/8/2018 4:54:56 PM 16340 Unloading Plugin RepFix
+4/8/2018 4:54:56 PM 16340 Unloading Plugin RWAPlayer (1.16.1)
+4/8/2018 4:54:56 PM 16340 Unloading Plugin RWARecorder (1.16.1)
+4/8/2018 4:54:56 PM 16340 Unloading Plugin Stormplugin for 1.16.1
+4/8/2018 4:54:56 PM 16340 Unloading Plugin W-MODE 1.02
+4/8/2018 4:54:56 PM 16340 Logging ended
