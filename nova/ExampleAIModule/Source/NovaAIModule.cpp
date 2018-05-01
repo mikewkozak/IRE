@@ -681,13 +681,14 @@ void NovaAIModule::onEnd(bool isWinner)
 
 	AbstractLayer search(squadManager->_squads); // import current game state to informationManager->gameState
 	if (!ONLY_MICRO) {
-		LOG("Frames: " << Broodwar->getFrameCount() << " winner: " << isWinner <<
+		LOG("Frames: " << Broodwar->getFrameCount() << " winner: " << isWinner << " enemy: " << Broodwar->enemy()->getRace() <<
 			" startPosition (" << informationManager->home->getCenter().x << "," << informationManager->home->getCenter().y << ")" <<
 			" myKillScore: " << Broodwar->self()->getKillScore() << " enemyKillScore: " << Broodwar->enemy()->getKillScore() <<
-			" EvaluationLastState: " << search.getEvaluation());
+			" EvaluationLastState: " << search.getEvaluation() << " map: " << Broodwar->mapFileName());// << Broodwar->enemy()->getUnits());
 	} else {
-		LOG("Frames: " << Broodwar->getFrameCount() << " winner: " << isWinner <<
-			" myKillScore: " << Broodwar->self()->getKillScore() << " enemyKillScore: " << Broodwar->enemy()->getKillScore());
+		LOG("Frames: " << Broodwar->getFrameCount() << " winner: " << isWinner << " enemy: " << Broodwar->enemy()->getRace() <<
+			" myKillScore: " << Broodwar->self()->getKillScore() << " enemyKillScore: " << Broodwar->enemy()->getKillScore() << 
+			" map: " << Broodwar->mapFileName());
 	}
 
 	if (HIGH_LEVEL_SEARCH) {
