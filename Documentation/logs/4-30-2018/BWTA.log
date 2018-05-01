@@ -1,0 +1,30 @@
+Map name: (2)Destination.scx
+Analyzing new map...
+ - Component-Labeling Map and Contours extracted in 0.00813033 seconds
+ - Vectorized areas in 0.0714115 seconds
+ [Detected polygons in 0.0891302 seconds]
+ - Voronoi constructed
+ [Computed Voronoi in 0.264875 seconds]
+ [Pruned Voronoi in 0.00356025 seconds]
+ [Identified region/chokepoints nodes in 0.00170667 seconds]
+ [Simplified graph in 0.00309848 seconds]
+ [Merged consecutive region nodes in 0.000989421 seconds]
+ [Chokepoints sides computed in 0.00295929 seconds]
+ - Polygon region computed in 0.0957076 seconds
+ - Label region map computed in 0.020836 seconds
+ - Created BWTA Regions and Chokepoints in 0.00140542 seconds
+ - Reachable regions computed in 0.00353705 seconds
+ [Created BWTA regions/chokepoints in 0.163981 seconds]
+ - Found 14 resource clusters in 0.00519299 seconds
+ - baseBuildMap computed in 0.00188977 seconds
+ - [WARNING] Skipped 'empty' cluster, probably mineral blocking path
+ - [WARNING] Skipped 'empty' cluster, probably mineral blocking path
+ - Best baseLocations computed in 0.00887757 seconds
+ [Calculated base locations in 0.0823348 seconds]
+ - Closest UnwalkablePolygonMap computed in 1.20463 seconds
+ - Closest BaseLocation Map computed in 2.2991 seconds
+ - Closest Chokepoint Map computed in 2.53255 seconds
+ [Calculated closest maps in 6.15153 seconds]
+ [Calculated base location properties in 3.18841 seconds]
+ [Calculated region coverage positions in 0.0312566 seconds]
+Map analyzed in 10.0793 seconds
