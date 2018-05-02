@@ -679,13 +679,25 @@ void NovaAIModule::onEnd(bool isWinner)
 	if (Broodwar->isReplay()) return;
 	LOG4CXX_TRACE(_logger, "START onEND");
 
-	/*
+
 	BWAPI::Unitset enemyUnits = Broodwar->enemy()->getUnits();
-	BWAPI::Unitset::iterator enemyIter;
-	for (enemyIter = enemyUnits.begin; enemyIter != enemyUnits.end; enemyIter++) {
-		BWAPI::Unit unit = *enemyIter;
+	UnitToCache history = informationManager->seenEnemyHistory;
+	
+	//BWAPI::Unitset::iterator enemyIter;
+	UnitToCache::iterator enemyIter;
+	LOG("Enemy Units:");
+	//for (enemyIter = enemyUnits.begin(); enemyIter != enemyUnits.end(); enemyIter++) {
+	for (enemyIter = history.begin(); enemyIter != history.end(); enemyIter++) {
+		BWAPI::Unit unit = enemyIter->first;
+		LOG("    " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+			/*
+		if (unit->getType() == BWAPI::UnitTypes::Unknown) {
+			//probably a building
+			LOG("    " << unit->getInitialType() << "     " << unit->getType() << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+		} else {
+			LOG("    " << unit->getType() << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+		}*/
 	}
-	*/
 	
 	AbstractLayer search(squadManager->_squads); // import current game state to informationManager->gameState
 	if (!ONLY_MICRO) {

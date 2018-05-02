@@ -1092,6 +1092,9 @@ void InformationManager::markEnemyAsVisible(Unit unit)
 	if (unit) {
 		seenEnemies.erase(unit); // we don't care if it wasn't in the list
 		visibleEnemies[unit] = unitCache_t(unit->getType(), unit->getPosition());
+
+		BWAPI::Unit unitCopy = unit;
+		seenEnemyHistory[unitCopy] = unitCache_t(unit->getType(), unit->getPosition());
 	}
 }
 

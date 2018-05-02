@@ -100,6 +100,7 @@ public:
 	void drawGroundDPSMap();
 
 	// Military information
+	UnitToCache seenEnemyHistory;
 	UnitToCache visibleEnemies;
 	UnitToCache seenEnemies;
 	void markEnemyAsSeen(BWAPI::Unit unit);
