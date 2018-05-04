@@ -698,6 +698,9 @@ void NovaAIModule::onEnd(bool isWinner)
 			LOG("    " << unit->getType() << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
 		}*/
 	}
+
+	LOG("Predicted Strategies: TBD");
+
 	
 	AbstractLayer search(squadManager->_squads); // import current game state to informationManager->gameState
 	if (!ONLY_MICRO) {
