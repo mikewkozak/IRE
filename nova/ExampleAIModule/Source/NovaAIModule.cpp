@@ -528,6 +528,11 @@ void NovaAIModule::onUnitShow(BWAPI::Unit unit)
 				squadManager->unitTraining(unit);
 			}
 		}
+		else {
+			if (unit->getType().isBuilding()) {
+				informationManager->markBuildingAsSeen(unit);
+			}
+		}
 	}
 
 	if (Broodwar->self()->isEnemy(unit->getPlayer())) {
@@ -689,14 +694,12 @@ void NovaAIModule::onEnd(bool isWinner)
 	//for (enemyIter = enemyUnits.begin(); enemyIter != enemyUnits.end(); enemyIter++) {
 	for (enemyIter = history.begin(); enemyIter != history.end(); enemyIter++) {
 		BWAPI::Unit unit = enemyIter->first;
-		LOG("    " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
-			/*
-		if (unit->getType() == BWAPI::UnitTypes::Unknown) {
-			//probably a building
-			LOG("    " << unit->getInitialType() << "     " << unit->getType() << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
-		} else {
-			LOG("    " << unit->getType() << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
-		}*/
+		if (enemyIter->second.type.isBuilding()) {
+			LOG("    B: " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+		}
+		else {
+			LOG("    " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+		}
 	}
 
 	LOG("Predicted Strategies: TBD");

@@ -103,6 +103,7 @@ public:
 	UnitToCache seenEnemyHistory;
 	UnitToCache visibleEnemies;
 	UnitToCache seenEnemies;
+	void markBuildingAsSeen(BWAPI::Unit building);
 	void markEnemyAsSeen(BWAPI::Unit unit);
 	void markEnemyAsVisible(BWAPI::Unit unit);
 	UnitToCache::iterator deleteSeenEnemy(UnitToCache::iterator unit);

@@ -1087,6 +1087,15 @@ void InformationManager::markEnemyAsSeen(Unit unit)
 	}
 }
 
+void InformationManager::markBuildingAsSeen(Unit building)
+{
+	if (building) {
+		BWAPI::Unit unitCopy = building;
+		seenEnemyHistory[unitCopy] = unitCache_t(building->getType(), building->getPosition());
+	}
+}
+
+
 void InformationManager::markEnemyAsVisible(Unit unit)
 {
 	if (unit) {
