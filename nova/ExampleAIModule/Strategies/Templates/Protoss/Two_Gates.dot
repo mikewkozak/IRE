@@ -1,0 +1,7 @@
+digraph G {
+0 [depth=0, label=Nexus, penwidth=1, strength=1, x=0, y=0, z=0];
+1 [depth=1, label=Gateway, penwidth=1, strength=1, x=0, y=0, z=0];
+2 [depth=2, label=Zealot, penwidth=1, strength=1, x=0, y=0, z=0];
+0->1 ;
+1->2 ;
+}

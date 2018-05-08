@@ -346,6 +346,23 @@ void StrategyManager::onFrame()
 				}
 			}
 		}
+
+		//mkozak - now that we're outside panic mode, let's evaluate strategy by calling the information manager
+		//Print the results of all observations
+		ITreeManager &mgr = informationManager->getTreeManager(Broodwar->enemy()->getRace());
+		//GraphUtils::printTree(mgr.getTree(), "Strategies/Observed/TerranTechTree-Strengthened.dot", false);
+
+		//Identify the likely enemy strategy based on observations
+		StrategyRecommendation recommendation = mgr.identifyStrategy();
+		LOG("Proposed Counter Strategy:\n"
+			<< "    Air / AA Aggressiveness: " << (recommendation.proposedAirAggressiveness * -1) << std::endl
+			<< "    Ground / AG Aggressiveness: " << (recommendation.proposedGroundAggressiveness * -1) << std::endl
+			<< "    Overall Defensiveness vs Aggressive: " << recommendation.proposedOverallAggressiveness << std::endl);
+
+
+		//recommend results
+		//bias build orders
+		
 	}
 
 // 	Broodwar->drawTextScreen(290,52,"Enemy Air DPS: %0.2f", informationManager->_enemyAirDPS);

@@ -112,6 +112,14 @@ InformationManager::InformationManager()
 	_wastedProductionFramesByResearch = 0;
 	_wastedProductionFramesByMoney = 0;
 	_wastedProductionFramesBySupply = 0;
+
+	//Write out tech trees
+#ifdef _DEBUG
+	printf("main() - Creating Tech Tree Managers\n");
+	GraphUtils::printTree(terranMgr.getTree(), "Strategies/TechTrees/TerranTechTree.dot", false);
+	GraphUtils::printTree(zergMgr.getTree(), "Strategies/TechTrees/ZergTechTree.dot", false);
+	GraphUtils::printTree(protossMgr.getTree(), "Strategies/TechTrees/ProtossTechTree.dot", false);
+#endif
 };
 
 InformationManager::~InformationManager()
@@ -1104,6 +1112,30 @@ void InformationManager::markEnemyAsVisible(Unit unit)
 
 		BWAPI::Unit unitCopy = unit;
 		seenEnemyHistory[unitCopy] = unitCache_t(unit->getType(), unit->getPosition());
+
+		//mkozak - add enemy observation to observed tech tree
+		getTreeManager(Broodwar->enemy()->getRace()).strengthenTree(unit->getType());
+	}
+}
+
+ITreeManager& InformationManager::getTreeManager(BWAPI::Race race) {
+	//std::cout<< "StrategySpace::getTechTree() - Getting tech tree for " << race.c_str() << std::endl;
+
+	if (race == BWAPI::Races::Terran) {
+		//printf("Retrieving TERRAN tech tree\n");
+		return terranMgr;
+	}
+	else if (race == BWAPI::Races::Protoss) {
+		//printf("Retrieving PROTOSS tech tree\n");
+		return protossMgr;
+	}
+	else if (race == BWAPI::Races::Zerg) {
+		//printf("Retrieving ZERG tech tree\n");
+		return zergMgr;
+	}
+	else {
+		printf("UNKNOWN RACE. RETURNING TERRAN BY DEFAULT\n");
+		return terranMgr;
 	}
 }
 

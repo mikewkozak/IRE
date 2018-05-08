@@ -7,6 +7,11 @@
 	#include "GUI/QSignal.h"
 #endif
 
+//IRE components
+#include "TreeManagers/TerranTreeManager.h"
+#include "TreeManagers/ZergTreeManager.h"
+#include "TreeManagers/ProtossTreeManager.h"
+
 #define SCANNER_SWEEP_FREQUENCY 30
 
 DWORD WINAPI AnalyzeMapThread();
@@ -248,6 +253,9 @@ public:
     size_t strategySelected;
     std::vector<int> learningData;
 
+	//IRE components
+	ITreeManager& getTreeManager(BWAPI::Race race);
+
 private:
 	log4cxx::LoggerPtr _logger;
 
@@ -258,6 +266,11 @@ private:
 	
 	inline BWAPI::TilePosition getNaturalExpandPosition() { return getExpandPosition(false); };
 	inline BWAPI::TilePosition getGasExpandPosition() { return getExpandPosition(true); };
+
+	//IRE Components
+	TerranTreeManager terranMgr;
+	ZergTreeManager zergMgr;
+	ProtossTreeManager protossMgr;
 };
 
 struct SortByXY

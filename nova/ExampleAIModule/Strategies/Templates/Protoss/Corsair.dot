@@ -1,0 +1,13 @@
+digraph G {
+0 [depth=0, label=Nexus, penwidth=1, strength=1, x=0, y=0, z=0];
+1 [depth=1, label=Gateway, penwidth=1, strength=1, x=0, y=0, z=0];
+2 [depth=2, label="Cybernetics Core", penwidth=1, strength=1, x=0, y=0, z=0];
+3 [depth=3, label=Stargate, penwidth=1, strength=1, x=0, y=0, z=0];
+4 [depth=4, label="Fleet Beacon", penwidth=1, strength=1, x=0, y=0, z=0];
+5 [depth=4, label=Corsair, penwidth=1, strength=1, x=0, y=0, z=0];
+0->1 ;
+1->2 ;
+2->3 ;
+3->4 ;
+3->5 ;
+}

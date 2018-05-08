@@ -207,7 +207,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>Source;$(BWAPI_DIR)/include;$(BWTA_DIR)/include;$(BOOST_INCLUDEDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;$(BWAPI_DIR)/include;$(BWTA_DIR)/include;$(BOOST_INCLUDEDIR);C:\workspace\IRE\nova\includeNova;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;EXAMPLEAIMODULE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -596,6 +596,13 @@
     <ClCompile Include="Source\SquadAgent.cpp" />
     <ClCompile Include="Source\SquadManager.cpp" />
     <ClCompile Include="Source\StrategyManager.cpp" />
+    <ClCompile Include="Source\Strategy\StrategyReader.cpp" />
+    <ClCompile Include="Source\Strategy\StrategyRecommendation.cpp" />
+    <ClCompile Include="Source\Strategy\StrategySpace.cpp" />
+    <ClCompile Include="Source\TreeManagers\ProtossTreeManager.cpp" />
+    <ClCompile Include="Source\TreeManagers\TerranTreeManager.cpp" />
+    <ClCompile Include="Source\TreeManagers\ZergTreeManager.cpp" />
+    <ClCompile Include="Source\Utils\GraphUtils.cpp" />
     <ClCompile Include="Source\VsProtoss.cpp" />
     <ClCompile Include="Source\VsTerran.cpp" />
     <ClCompile Include="Source\VsZerg.cpp" />
@@ -722,6 +729,14 @@
     <ClInclude Include="Source\State.h" />
     <ClInclude Include="Source\StateMachine.h" />
     <ClInclude Include="Source\StrategyManager.h" />
+    <ClInclude Include="Source\Strategy\StrategyReader.h" />
+    <ClInclude Include="Source\Strategy\StrategyRecommendation.h" />
+    <ClInclude Include="Source\Strategy\StrategySpace.h" />
+    <ClInclude Include="Source\TreeManagers\ITreeManager.h" />
+    <ClInclude Include="Source\TreeManagers\ProtossTreeManager.h" />
+    <ClInclude Include="Source\TreeManagers\TerranTreeManager.h" />
+    <ClInclude Include="Source\TreeManagers\ZergTreeManager.h" />
+    <ClInclude Include="Source\Utils\GraphUtils.h" />
     <ClInclude Include="Source\Utils\Statistic.h" />
     <ClInclude Include="Source\Utils\Timer.h" />
     <ClInclude Include="Source\VsProtoss.h" />

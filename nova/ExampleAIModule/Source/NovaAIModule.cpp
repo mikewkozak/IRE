@@ -1,5 +1,6 @@
 #include "NovaAIModule.h"
 
+
 // #include <vld.h> // uncomment this to detect memory leaks
 
 #ifdef NOVA_GUI
@@ -18,7 +19,6 @@ NovaAIModule::NovaAIModule()
 	, saidGG(false)
     , timeout(0)
 {
-
 }
 
 void NovaAIModule::onStart()
@@ -685,7 +685,7 @@ void NovaAIModule::onEnd(bool isWinner)
 	LOG4CXX_TRACE(_logger, "START onEND");
 
 
-	BWAPI::Unitset enemyUnits = Broodwar->enemy()->getUnits();
+	//BWAPI::Unitset enemyUnits = Broodwar->enemy()->getUnits();
 	UnitToCache history = informationManager->seenEnemyHistory;
 	
 	//BWAPI::Unitset::iterator enemyIter;

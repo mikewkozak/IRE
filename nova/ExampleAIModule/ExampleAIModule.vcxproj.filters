@@ -41,6 +41,12 @@
     <Filter Include="Source\Managers">
       <UniqueIdentifier>{bdebb2b3-881d-459e-ada1-93ecd76f6ee7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Strategy">
+      <UniqueIdentifier>{165a398f-8fdd-4e3e-bac5-0b2607497250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\TreeManagers">
+      <UniqueIdentifier>{6550b515-225d-44de-ba6b-5baf11a58d48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Dll.cpp">
@@ -183,6 +189,27 @@
     </ClCompile>
     <ClCompile Include="Source\Search\UnitInfoStatic.cpp">
       <Filter>Source\Search\CombatSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Strategy\StrategyReader.cpp">
+      <Filter>Source\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Strategy\StrategySpace.cpp">
+      <Filter>Source\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\GraphUtils.cpp">
+      <Filter>Source\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TreeManagers\ProtossTreeManager.cpp">
+      <Filter>Source\TreeManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TreeManagers\TerranTreeManager.cpp">
+      <Filter>Source\TreeManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TreeManagers\ZergTreeManager.cpp">
+      <Filter>Source\TreeManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Strategy\StrategyRecommendation.cpp">
+      <Filter>Source\Strategy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +377,30 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Strategy\StrategyReader.h">
+      <Filter>Source\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Strategy\StrategySpace.h">
+      <Filter>Source\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\GraphUtils.h">
+      <Filter>Source\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TreeManagers\ITreeManager.h">
+      <Filter>Source\TreeManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TreeManagers\ProtossTreeManager.h">
+      <Filter>Source\TreeManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TreeManagers\TerranTreeManager.h">
+      <Filter>Source\TreeManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TreeManagers\ZergTreeManager.h">
+      <Filter>Source\TreeManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Strategy\StrategyRecommendation.h">
+      <Filter>Source\Strategy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
