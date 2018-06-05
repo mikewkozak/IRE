@@ -42,7 +42,9 @@ void StrategySpace::addStrategy(BWAPI::Race race, Strategy strat) {
 	for (std::pair<VertexIterator, VertexIterator> it = boost::vertices(strat.techTree); it.first != it.second; ++it.first) {
 		//std::cout << "Examining " << strat.techTree[*it.first].name << std::endl;
 		if (strat.techTree[*it.first].node != NULL) {
-			
+			//link the node to the strategy
+			strat.techTree[*it.first].strategyName = strat.name;
+
 			//Set the position of the node in strategy space as a factor of depth and intensities. The lowest leaf in the tree will be
 			//scaled to be the same value as the intensity, with all other nodes linearly scaled based on percent depth
 
@@ -150,12 +152,16 @@ StrategyRecommendation StrategySpace::identifyStrategy(BWAPI::Race race) {
 	double proposedAirAggressiveness = 0;
 	double proposedGroundAggressiveness = 0;
 	double proposedOverallAggressiveness = 0;
+	std::string identifiedStrategy = "";
 
 	//For the top NUM_STRATEGY_NODES vertices or all vertices, whichever comes first
 	for (iter = vertices.begin(); (iter != vertices.end() && count < NUM_STRATEGY_NODES); iter++) {
 
 		//Find the node in the tree that matches this vertex
 		Vertex strategyNode = (*iter);
+		if (identifiedStrategy == "") {
+			identifiedStrategy = strategyNode.strategyName;
+		}
 
 		//We want to ignore all the "common" nodes
 		if ((strategyNode.node == BWAPI::UnitTypes::Terran_Command_Center) ||
@@ -191,9 +197,10 @@ StrategyRecommendation StrategySpace::identifyStrategy(BWAPI::Race race) {
 
 	//Take the average intensity of all identified strategy nodes
 	StrategyRecommendation recommendation;
-	recommendation.proposedAirAggressiveness = (proposedAirAggressiveness / (NUM_STRATEGY_NODES * 1.0));
-	recommendation.proposedGroundAggressiveness = (proposedGroundAggressiveness / (NUM_STRATEGY_NODES * 1.0));
-	recommendation.proposedOverallAggressiveness = (proposedOverallAggressiveness / (NUM_STRATEGY_NODES * 1.0));
+	recommendation.proposedAirAggressiveness = (proposedAirAggressiveness / (NUM_STRATEGY_NODES * -1.0));
+	recommendation.proposedGroundAggressiveness = (proposedGroundAggressiveness / (NUM_STRATEGY_NODES * -1.0));
+	recommendation.proposedOverallAggressiveness = (proposedOverallAggressiveness / (NUM_STRATEGY_NODES * -1.0));
+	recommendation.strategyIdentified = identifiedStrategy;
 
 	//The propose counter-stragey should be the opposite intensity along each axis
 	std::cout << "Proposed Counter Strategy:\n"

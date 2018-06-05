@@ -695,14 +695,17 @@ void NovaAIModule::onEnd(bool isWinner)
 	for (enemyIter = history.begin(); enemyIter != history.end(); enemyIter++) {
 		BWAPI::Unit unit = enemyIter->first;
 		if (enemyIter->second.type.isBuilding()) {
-			LOG("    B: " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+			if ( (enemyIter->second.type != UnitTypes::Resource_Mineral_Field) && (enemyIter->second.type != UnitTypes::Resource_Mineral_Field_Type_2) &&
+				(enemyIter->second.type != UnitTypes::Resource_Mineral_Field_Type_3) && (enemyIter->second.type != UnitTypes::Resource_Vespene_Geyser) ) {
+				LOG("    B: " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
+			}
 		}
 		else {
 			LOG("    " << enemyIter->second.type << "    ID: " << unit->getID() << "    HP: " << unit->getHitPoints());
 		}
 	}
 
-	LOG("Predicted Strategies: TBD");
+	LOG("Predicted Strategies: " << strategyManager->getCurrentEnemyStrategy());
 
 	
 	AbstractLayer search(squadManager->_squads); // import current game state to informationManager->gameState

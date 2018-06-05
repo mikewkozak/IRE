@@ -10,6 +10,7 @@ StrategyManager::StrategyManager(ProductionManager *productionManager)
 	_productionManager = productionManager;
 	_liftBuildings.clear();
 	_hiddingCorners = true;
+	_inferenceCounter = 0;
 
 	// Marine rush
 //	informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
@@ -294,7 +295,7 @@ void StrategyManager::onFrame()
 	if (informationManager->_panicMode) {
 		if (_liftBuildings.size() == 0) { // search buildings that can lift
 			BWAPI::Unitset allUnits = Broodwar->self()->getUnits();
-			for(BWAPI::Unitset::iterator i = allUnits.begin(); i!=allUnits.end(); ++i) {
+			for (BWAPI::Unitset::iterator i = allUnits.begin(); i != allUnits.end(); ++i) {
 				if ((*i)->getType().isFlyingBuilding() && !(*i)->isLifted()) {
 					_liftBuildings.insert(*i);
 					if ((*i)->isTraining()) (*i)->cancelTrain();
@@ -302,12 +303,14 @@ void StrategyManager::onFrame()
 					if ((*i)->isUpgrading()) (*i)->cancelUpgrade();
 				}
 			}
-		} else { // hide buildings
-			for(BWAPI::Unitset::iterator i = _liftBuildings.begin(); i!=_liftBuildings.end();) {
+		}
+		else { // hide buildings
+			for (BWAPI::Unitset::iterator i = _liftBuildings.begin(); i != _liftBuildings.end();) {
 				if (!(*i)->isLifted()) { // check if we are lifted
-					(*i)->lift(); 
+					(*i)->lift();
 					++i;
-				} else if (!(*i)->isIdle()) {
+				}
+				else if (!(*i)->isIdle()) {
 					// search best position to hide (map corners or middle corners)
 					Position myBase = BWTA::getStartLocation(Broodwar->self())->getPosition();
 					Position enemyBase = informationManager->_enemyStartPosition;
@@ -315,22 +318,23 @@ void StrategyManager::onFrame()
 					double newDistance;
 					Position bestPlace;
 					if (_hiddingCorners) {
-						bestPlace = Position(0,0);
-						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE,0));
-						hiddingPositions.insert(Position(0,Broodwar->mapHeight()*TILE_SIZE));
-						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE,Broodwar->mapHeight()*TILE_SIZE));
+						bestPlace = Position(0, 0);
+						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE, 0));
+						hiddingPositions.insert(Position(0, Broodwar->mapHeight()*TILE_SIZE));
+						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE, Broodwar->mapHeight()*TILE_SIZE));
 						_hiddingCorners = false;
-					} else {
-						bestPlace = Position(Broodwar->mapWidth()*TILE_SIZE,Broodwar->mapHeight()*TILE_SIZE/2);
-						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE/2,0));
-						hiddingPositions.insert(Position(0,Broodwar->mapHeight()*TILE_SIZE/2));
-						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE/2,Broodwar->mapHeight()*TILE_SIZE));
+					}
+					else {
+						bestPlace = Position(Broodwar->mapWidth()*TILE_SIZE, Broodwar->mapHeight()*TILE_SIZE / 2);
+						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE / 2, 0));
+						hiddingPositions.insert(Position(0, Broodwar->mapHeight()*TILE_SIZE / 2));
+						hiddingPositions.insert(Position(Broodwar->mapWidth()*TILE_SIZE / 2, Broodwar->mapHeight()*TILE_SIZE));
 						_hiddingCorners = true;
 					}
 					double bestDistance = bestPlace.getDistance(myBase);
 					bestDistance += bestPlace.getDistance(enemyBase);
 
-					for(std::set<BWAPI::Position>::iterator pos=hiddingPositions.begin();pos!=hiddingPositions.end();++pos) {
+					for (std::set<BWAPI::Position>::iterator pos = hiddingPositions.begin(); pos != hiddingPositions.end(); ++pos) {
 						newDistance = (*pos).getDistance(myBase);
 						newDistance += (*pos).getDistance(enemyBase);
 						if (newDistance > bestDistance) {
@@ -341,11 +345,100 @@ void StrategyManager::onFrame()
 
 					(*i)->move(bestPlace);
 					++i;
-				} else {
+				}
+				else {
 					i = _liftBuildings.erase(i);
 				}
 			}
-		}		
+		}
+	}
+	
+
+	//mkozak - now that we're outside panic mode: Identify the likely enemy strategy based on observations
+	_inferenceCounter++;
+	if ((_inferenceCounter % 1000) == 0) {//only do this every 1000 frames
+
+		//First let's check to see if we've even SEEN the enemy yet
+		if(Broodwar->enemy()->getRace() != Races::Unknown) {
+			Broodwar->sendText("Making Strategy Prediction");
+			_inferenceCounter = 0;
+
+			//Print the results of all observations
+			Broodwar->sendText(Broodwar->enemy()->getRace().c_str());
+			//Let's evaluate strategy by calling the information manager
+			ITreeManager &mgr = informationManager->getTreeManager(Broodwar->enemy()->getRace());
+			//GraphUtils::printTree(mgr.getTree(), "Strategies/Observed/TerranTechTree-Strengthened.dot", false);
+
+
+			StrategyRecommendation recommendation = mgr.identifyStrategy();
+			double air = (recommendation.proposedAirAggressiveness);
+			double ground = (recommendation.proposedGroundAggressiveness);
+			double attack = recommendation.proposedOverallAggressiveness;
+
+			//tag the returned strategy as the current one
+			_currentEnemyStrategy = recommendation.strategyIdentified;
+			Broodwar->sendText(_currentEnemyStrategy.c_str());
+			Broodwar->sendText(std::to_string(air).c_str());
+			Broodwar->sendText(std::to_string(ground).c_str());
+			Broodwar->sendText(std::to_string(attack).c_str());
+
+			//recommend results
+			if (air > 0.5) {//if we need to be aggressively air
+				//_StateMachine->ChangeState(TwoPortWraith::Instance());
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 0;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
+			}
+			else if ((attack > 0.5) && (air > 0)) {//if we need to be aggressive and consider air
+				//_StateMachine->ChangeState(OneRaxFE::Instance());
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 00;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
+			}
+			else if ((attack > 0.5) && (air < 0)) {//if we need to be aggressive and DON'T need to consider air
+				//_StateMachine->ChangeState(TwoFactTanks1::Instance());
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 50;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 50;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
+			}
+			else if ((attack > 0) && (air > 0)) {//need to be able to attack air but stay offensive
+												 //BBS
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 0;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
+			}
+			else if ((attack < 0) && (air > 0)) {//need to be able to attack air but stay defensive
+				//_StateMachine->ChangeState(Sparks::Instance()); //Sparks - bioball
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 75;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 0;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 25;
+			}
+			else if ((attack < 0) && (air < 0)) {//don't need to be able to attack air but still defend
+				//_StateMachine->ChangeState(TwoFactMines::Instance());
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 25;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 50;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 25;
+			}
+			else {//bbs
+				informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
+				informationManager->_percentList[UnitTypes::Terran_Firebat] = 0;
+				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
+			}
+
+			//bias build orders
+			/*
+			informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Firebat] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Vulture] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Siege_Tank_Siege_Mode] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Wraith] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Valkyrie] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Dropship] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Goliath] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Missile_Turret] = 100;
+			informationManager->_percentList[UnitTypes::Terran_Science_Vessel] = 100;
+			*/
+		}
 	}
 
 // 	Broodwar->drawTextScreen(290,52,"Enemy Air DPS: %0.2f", informationManager->_enemyAirDPS);
@@ -361,6 +454,7 @@ void StrategyManager::onFrame()
 	//Broodwar->drawTextScreen(437,17,"M: %d G: %d", informationManager->minerals(), informationManager->gas());
 	LOG4CXX_TRACE(_logger, "DONE");
 }
+
 
 void StrategyManager::handleCloakedEnemy() {
 	if (!informationManager->_comsatStation.empty() && !informationManager->_cloakedEnemyPositions.empty()) {

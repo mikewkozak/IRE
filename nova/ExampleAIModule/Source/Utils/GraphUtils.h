@@ -32,6 +32,7 @@ Container for a node in the graph. These nodes can be a unit or building type
 struct Vertex {
 	BWAPI::UnitType node;//type of SC object
 	std::string name;//name for display purposes
+	std::string strategyName;//For tracking what strategy this is a part of
 	int strength;//The number of times it has been "seen" by IRE
 	//The location in "Strategy Space" representing the relative intensity of this object in terms of strategy
 	double air_aa_pos;
@@ -124,6 +125,7 @@ public:
 		graph[node].name = name;
 		graph[node].strength = 1;
 		graph[node].depth = 0;
+		graph[node].strategyName = "";
 
 		//Set the initial location
 		graph[node].air_aa_pos = 0;
