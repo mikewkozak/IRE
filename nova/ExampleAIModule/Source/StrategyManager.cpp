@@ -374,14 +374,46 @@ void StrategyManager::onFrame()
 			double air = (recommendation.proposedAirAggressiveness);
 			double ground = (recommendation.proposedGroundAggressiveness);
 			double attack = recommendation.proposedOverallAggressiveness;
+			double totalPoints = std::abs(air) + std::abs(ground) + std::abs(attack);
 
 			//tag the returned strategy as the current one
 			_currentEnemyStrategy = recommendation.strategyIdentified;
 			Broodwar->sendText(_currentEnemyStrategy.c_str());
-			Broodwar->sendText(std::to_string(air).c_str());
-			Broodwar->sendText(std::to_string(ground).c_str());
-			Broodwar->sendText(std::to_string(attack).c_str());
+			Broodwar->sendText(("Air Aggro: " + std::to_string(air) + "    " + "Ground Aggro: " + std::to_string(ground) + "     " 
+				+ "Aggressiveness: " + std::to_string(attack)).c_str());
+			Broodwar->sendText(("totalPoints: " + std::to_string(totalPoints)).c_str());
 
+			//convert strategy intensities into unit percentages
+			
+			double marinePercent = 1.0 / totalPoints * 100.0;
+			double wraithPercent = 0.0;
+			double golaithPercent = 0.0;
+			if (air > 0) {
+				marinePercent = (1.0 - air) / totalPoints * 100.0;
+				wraithPercent = air / totalPoints * 100.0;
+			}
+			else {
+				marinePercent = (1.0 - (air * -1)) / totalPoints * 100.0;
+				golaithPercent = (air * -1) / totalPoints * 100.0;
+			}
+
+			double medicPercent = std::max(0.0, (attack * -1.0) ) / totalPoints * 100.0;
+			double firebatPercent = std::max(0.0, ground) / totalPoints * 100.0;
+
+
+			Broodwar->sendText(("marinePercent: " + std::to_string(marinePercent) + "    " + "medicPercent: " + std::to_string(medicPercent) + "     "
+								+ "firebatPercent: " + std::to_string(firebatPercent)).c_str());
+			Broodwar->sendText(("golaithPercent: " + std::to_string(golaithPercent)
+								+ "     " + "wraithPercent: " + std::to_string(wraithPercent)).c_str());
+
+
+			informationManager->_percentList[UnitTypes::Terran_Marine] = marinePercent;
+			informationManager->_percentList[UnitTypes::Terran_Firebat] = firebatPercent;
+			informationManager->_percentList[UnitTypes::Terran_Medic] = medicPercent;
+			informationManager->_percentList[UnitTypes::Terran_Wraith] = wraithPercent;
+			informationManager->_percentList[UnitTypes::Terran_Goliath] = golaithPercent;
+
+			/*
 			//recommend results
 			if (air > 0.5) {//if we need to be aggressively air
 				//_StateMachine->ChangeState(TwoPortWraith::Instance());
@@ -423,7 +455,7 @@ void StrategyManager::onFrame()
 				informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
 				informationManager->_percentList[UnitTypes::Terran_Firebat] = 0;
 				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
-			}
+			}*/
 
 			//bias build orders
 			/*
