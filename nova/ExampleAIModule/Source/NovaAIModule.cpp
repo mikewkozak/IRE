@@ -705,7 +705,12 @@ void NovaAIModule::onEnd(bool isWinner)
 		}
 	}
 
-	LOG("Predicted Strategies: " << strategyManager->getCurrentEnemyStrategy());
+	std::string result = "";
+	for (auto const& strategy : strategyManager->getCurrentEnemyStrategies()) { 
+		result += strategy;
+		result += ", ";
+	}
+	LOG("Predicted Strategies: " << result);
 
 	
 	AbstractLayer search(squadManager->_squads); // import current game state to informationManager->gameState

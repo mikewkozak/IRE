@@ -149,19 +149,16 @@ StrategyRecommendation StrategySpace::identifyStrategy(BWAPI::Race race) {
 	int count = 0;
 
 	//These will become the average of all the top nodes
+	StrategyRecommendation recommendation;
 	double proposedAirAggressiveness = 0;
 	double proposedGroundAggressiveness = 0;
 	double proposedOverallAggressiveness = 0;
-	std::string identifiedStrategy = "";
 
 	//For the top NUM_STRATEGY_NODES vertices or all vertices, whichever comes first
 	for (iter = vertices.begin(); (iter != vertices.end() && count < NUM_STRATEGY_NODES); iter++) {
 
 		//Find the node in the tree that matches this vertex
 		Vertex strategyNode = (*iter);
-		if (identifiedStrategy == "") {
-			identifiedStrategy = strategyNode.strategyName;
-		}
 
 		//We want to ignore all the "common" nodes
 		if ((strategyNode.node == BWAPI::UnitTypes::Terran_Command_Center) ||
@@ -190,17 +187,18 @@ StrategyRecommendation StrategySpace::identifyStrategy(BWAPI::Race race) {
 			proposedGroundAggressiveness += groundAggressiveness;
 			proposedOverallAggressiveness += overallAggressiveness;
 
+			//add the strategy to the identified list
+			recommendation.strategyIdentified.push_back((strategyNode.name + "-" + strategyNode.strategyName));
+
 			std::cout << strategyNode.name << "  POS A: " << airAggressiveness << "   G: " << groundAggressiveness << "   O: " << overallAggressiveness << std::endl;
 		}
 		count++;
 	}
 
 	//Take the average intensity of all identified strategy nodes
-	StrategyRecommendation recommendation;
 	recommendation.proposedAirAggressiveness = (proposedAirAggressiveness / (NUM_STRATEGY_NODES * -1.0));
 	recommendation.proposedGroundAggressiveness = (proposedGroundAggressiveness / (NUM_STRATEGY_NODES * -1.0));
 	recommendation.proposedOverallAggressiveness = (proposedOverallAggressiveness / (NUM_STRATEGY_NODES * -1.0));
-	recommendation.strategyIdentified = identifiedStrategy;
 
 	//The propose counter-stragey should be the opposite intensity along each axis
 	std::cout << "Proposed Counter Strategy:\n"

@@ -12,7 +12,7 @@ class StrategyRecommendation {
 public:
 	StrategyRecommendation();
 
-	std::string strategyIdentified;
+	std::vector<std::string> strategyIdentified;
 	double proposedAirAggressiveness;
 	double proposedGroundAggressiveness;
 	double proposedOverallAggressiveness;

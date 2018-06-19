@@ -378,7 +378,13 @@ void StrategyManager::onFrame()
 
 			//tag the returned strategy as the current one
 			_currentEnemyStrategy = recommendation.strategyIdentified;
-			Broodwar->sendText(_currentEnemyStrategy.c_str());
+			std::string result = "";
+			for (auto const& strategy : _currentEnemyStrategy) {
+				result += strategy;
+				result += ", ";
+			}
+
+			Broodwar->sendText(result.c_str());
 			Broodwar->sendText(("Air Aggro: " + std::to_string(air) + "    " + "Ground Aggro: " + std::to_string(ground) + "     " 
 				+ "Aggressiveness: " + std::to_string(attack)).c_str());
 			Broodwar->sendText(("totalPoints: " + std::to_string(totalPoints)).c_str());
@@ -406,14 +412,14 @@ void StrategyManager::onFrame()
 			Broodwar->sendText(("golaithPercent: " + std::to_string(golaithPercent)
 								+ "     " + "wraithPercent: " + std::to_string(wraithPercent)).c_str());
 
-
+			/*
 			informationManager->_percentList[UnitTypes::Terran_Marine] = marinePercent;
 			informationManager->_percentList[UnitTypes::Terran_Firebat] = firebatPercent;
 			informationManager->_percentList[UnitTypes::Terran_Medic] = medicPercent;
 			informationManager->_percentList[UnitTypes::Terran_Wraith] = wraithPercent;
 			informationManager->_percentList[UnitTypes::Terran_Goliath] = golaithPercent;
-
-			/*
+			*/
+			
 			//recommend results
 			if (air > 0.5) {//if we need to be aggressively air
 				//_StateMachine->ChangeState(TwoPortWraith::Instance());
@@ -455,7 +461,7 @@ void StrategyManager::onFrame()
 				informationManager->_percentList[UnitTypes::Terran_Marine] = 100;
 				informationManager->_percentList[UnitTypes::Terran_Firebat] = 0;
 				informationManager->_percentList[UnitTypes::Terran_Medic] = 0;
-			}*/
+			}
 
 			//bias build orders
 			/*

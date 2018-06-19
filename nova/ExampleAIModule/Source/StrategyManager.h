@@ -22,7 +22,7 @@ public:
 	void handleCloakedEnemy();
 	void checkGasSteal(BWAPI::Unit unit);
 	StateMachine<StrategyManager>*  GetFSM() { return _StateMachine; }
-    std::string  getCurrentEnemyStrategy() { return _currentEnemyStrategy; }
+	std::vector<std::string>  getCurrentEnemyStrategies() { return _currentEnemyStrategy; }
 
 private:
 	log4cxx::LoggerPtr _logger;
@@ -33,7 +33,7 @@ private:
 	StateMachine<StrategyManager>*  _StateMachine;
 
 	unsigned int _inferenceCounter;//used to limit the frequency of strategy predictions
-	std::string _currentEnemyStrategy;//the current strategy being pursued according to IRE
+	std::vector<std::string> _currentEnemyStrategy;//the current strategy being pursued according to IRE
 
 	BWAPI::Unitset _liftBuildings;
 	bool _hiddingCorners;
